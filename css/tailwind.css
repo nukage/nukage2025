@@ -1,0 +1,296 @@
+/* @import "tailwindcss/base";
+I need to finish setting this up later...
+*/
+.sticky {
+		position: sticky;
+}
+.block {
+		display: block;
+}
+.inline-block {
+		display: inline-block;
+}
+.inline {
+		display: inline;
+}
+.flex {
+		display: flex;
+}
+.grid {
+		display: grid;
+}
+.w-full {
+		width: 100%;
+}
+.-rotate-180 {
+		--tw-rotate: -180deg;
+		transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+.rotate-180 {
+		--tw-rotate: 180deg;
+		transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+.rotate-90 {
+		--tw-rotate: 90deg;
+		transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+.cursor-pointer {
+		cursor: pointer;
+}
+.flex-row {
+		flex-direction: row;
+}
+.flex-col {
+		flex-direction: column;
+}
+.flex-wrap {
+		flex-wrap: wrap;
+}
+.flex-nowrap {
+		flex-wrap: nowrap;
+}
+.items-start {
+		align-items: flex-start;
+}
+.items-end {
+		align-items: flex-end;
+}
+.items-baseline {
+		align-items: baseline;
+}
+.items-stretch {
+		align-items: stretch;
+}
+.justify-start {
+		justify-content: flex-start;
+}
+.justify-end {
+		justify-content: flex-end;
+}
+.justify-center {
+		justify-content: center;
+}
+.justify-between {
+		justify-content: space-between;
+}
+.justify-around {
+		justify-content: space-around;
+}
+.justify-evenly {
+		justify-content: space-evenly;
+}
+.border {
+		border-width: 1px;
+}
+.fill-base {
+		fill: #ffffff;
+}
+.uppercase {
+		text-transform: uppercase;
+}
+.lowercase {
+		text-transform: lowercase;
+}
+.capitalize {
+		text-transform: capitalize;
+}
+.normal-case {
+		text-transform: none;
+}
+.no-underline {
+		text-decoration-line: none;
+}
+.outline {
+		outline-style: solid;
+}
+.transition-all {
+		transition-property: all;
+		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+		transition-duration: 150ms;
+}
+.duration-300 {
+		transition-duration: 300ms;
+}
+.slideout-nav {
+		position: fixed;
+		top: 0;
+		right: 0;
+		z-index: 10;
+		display: flex;
+		height: 100%;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		background-color: #ffffff;
+		padding-left: clamp(35px, 5vw, 50px);
+		padding-right: clamp(35px, 5vw, 50px);
+		font-family: Rubik, sans-serif;
+		color: #1a1a1a;
+}
+@media not all and (min-width: 480px) {
+		.slideout-nav {
+				width: 100%;
+		}
+}
+@media (min-width: 600px) {
+		.slideout-nav {
+				padding-left: clamp(60px, 8vw, 80px);
+				padding-right: clamp(60px, 8vw, 80px);
+		}
+}
+@media (min-width: 782px) {
+		.slideout-nav {
+				padding-left: 120px;
+				padding-right: 120px;
+		}
+}
+.slideout-nav.active {
+		box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.24);
+	}
+.slideout-nav:not(.active) {
+		transform: translateX(100%);
+	}
+.slideout-nav__toggle {
+		position: fixed;
+		right: 0;
+		top: 0;
+		z-index: 11;
+		background-color: #0785fb;
+		padding-top: clamp(35px, 5vw, 50px);
+		padding-bottom: clamp(35px, 5vw, 50px);
+		padding-left: 7px;
+		padding-right: 7px;
+}
+@media (min-width: 782px) {
+		.slideout-nav__toggle {
+				padding-top: clamp(60px, 8vw, 80px);
+				padding-bottom: clamp(60px, 8vw, 80px);
+				padding-left: 12px;
+				padding-right: 12px;
+		}
+		.slideout-nav__toggle:hover {
+				background-color: #a0aec0;
+		}
+}
+/* img {
+			@apply max-md:w-25;
+		} */
+.slideout-nav__toggle:hover img,
+		.slideout-nav__toggle.active img {
+			filter: brightness(0) saturate(100%) invert(100%) sepia(0%)
+				saturate(7495%) hue-rotate(341deg) brightness(100%) contrast(102%);
+		}
+.slideout-nav__toggle.active img {
+			transform: scaleX(-100%);
+		}
+.slideout-nav__toggle.active {
+		background-color: #a0aec0;
+}
+@media not all and (min-width: 782px) {
+		.slideout-nav__menu-wrapper {
+				width: 100%;
+		}
+}
+.slideout-nav__menu {
+		width: 100%;
+}
+@media (min-width: 782px) {
+		.slideout-nav__menu {
+				width: 38rem;
+		}
+}
+.slideout-nav__menu > li {
+			/* TOP LEVEL MENU ITEMS */
+			position: relative;
+			margin-top: clamp(15px, 2vw, 20px);
+			margin-bottom: clamp(15px, 2vw, 20px);
+			padding-left: 15px;
+			padding-right: 15px;
+			padding-bottom: 24px;
+			font-size: 24px;
+			font-weight: 600;
+			color: #d81853;
+		}
+.slideout-nav__menu > li:hover {
+		color: #a0aec0;
+}
+/* &:not(:last-child) {
+				@apply border-b-[2px] border-primary border-dotted;
+			} */
+.slideout-nav__menu > li > a img {
+		position: absolute;
+		right: 0;
+		top: 0;
+		transition-property: opacity;
+		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+		transition-duration: 200ms;
+}
+.slideout-nav__menu > li > a .carbon {
+		position: relative;
+		display: inline-block;
+		height: 2.7rem;
+		width: 32px;
+}
+.slideout-nav__menu > li .img_carbon_arrow-right-green {
+		position: relative;
+		left: 1rem;
+		top: -0.2rem;
+		display: inline;
+}
+.slideout-nav__menu > li:hover .img_carbon_upDown,
+				.slideout-nav__menu > li:hover .img_carbon_arrow-right-green {
+					filter: brightness(0) saturate(100%) invert(11%) sepia(99%)
+						saturate(6439%) hue-rotate(329deg) brightness(81%) contrast(102%);
+				}
+.slideout-nav__menu > li.active {
+		color: #a0aec0;
+}
+.slideout-nav__menu > li.active .img_carbon_upDown {
+		opacity: 0;
+}
+.slideout-nav__menu > li:not(.active) .img_carbon_close {
+		opacity: 0;
+}
+.slideout-nav__menu > li > ul {
+				/* SUBMENU */
+				font-family: Oswald, sans-serif;
+				font-weight: 600;
+			}
+.slideout-nav__menu > li > ul > li {
+		color: #1a1a1a;
+}
+.slideout-nav__menu > li > ul > li a {
+		position: relative;
+}
+.slideout-nav__menu > li > ul > li a::after {
+		position: absolute;
+		top: 0.1rem;
+		right: -2.8rem;
+						content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M13.5 4.5L12.4275 5.54475L18.1125 11.25H3V12.75H18.1125L12.4275 18.4298L13.5 19.5L21 12L13.5 4.5Z' fill='%2325464A'/%3E%3C/svg%3E");
+						transition-property: right;
+}
+.slideout-nav__menu > li > ul > li:hover {
+		color: #a0aec0;
+}
+.slideout-nav__menu > li > ul > li:hover a:after {
+		right: -3rem;
+							filter: invert(12%) sepia(75%) saturate(6634%) hue-rotate(327deg)
+								brightness(86%) contrast(105%);
+}
+img {
+		border-radius: 9999px;
+}
+.hover\:fill-tertiary:hover {
+		fill: #0785fb;
+}
+@media not all and (min-width: 782px) {
+		.max-md\:grid-cols-1 {
+				grid-template-columns: repeat(1, minmax(0, 1fr));
+		}
+}
+@media (min-width: 782px) {
+		.md\:grid-cols-2 {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+}
+
