@@ -27,6 +27,36 @@ const customGroupIcon = (
     </svg>
 );
 
+// Add block transforms from core/group
+const transforms = {
+    from: [
+        {
+            type: 'block',
+            blocks: ['core/group'],
+            transform: ( attributes, innerBlocks ) => [
+                wp.blocks.createBlock(
+                    metadata.name,
+                    { ...attributes },
+                    innerBlocks
+                )
+            ],
+        },
+    ],
+    to: [
+        {
+            type: 'block',
+            blocks: ['core/group'],
+            transform: ( attributes, innerBlocks ) => [
+                wp.blocks.createBlock(
+                    'core/group',
+                    { ...attributes },
+                    innerBlocks
+                )
+            ],
+        },
+    ],
+};
+
 /**
  * Every block starts by registering a new block type definition.
  *
@@ -36,4 +66,5 @@ registerBlockType( metadata.name, {
     ...metadata,
     icon: customGroupIcon,
     edit: Edit,
+    transforms,
 } );

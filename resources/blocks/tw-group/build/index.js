@@ -142,6 +142,24 @@ const customGroupIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODU
   })
 });
 
+// Add block transforms from core/group
+const transforms = {
+  from: [{
+    type: 'block',
+    blocks: ['core/group'],
+    transform: (attributes, innerBlocks) => [wp.blocks.createBlock(_block_json__WEBPACK_IMPORTED_MODULE_3__.name, {
+      ...attributes
+    }, innerBlocks)]
+  }],
+  to: [{
+    type: 'block',
+    blocks: ['core/group'],
+    transform: (attributes, innerBlocks) => [wp.blocks.createBlock('core/group', {
+      ...attributes
+    }, innerBlocks)]
+  }]
+};
+
 /**
  * Every block starts by registering a new block type definition.
  *
@@ -150,7 +168,8 @@ const customGroupIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODU
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_3__.name, {
   ..._block_json__WEBPACK_IMPORTED_MODULE_3__,
   icon: customGroupIcon,
-  edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"]
+  edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
+  transforms
 });
 
 /***/ }),
