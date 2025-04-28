@@ -23,3 +23,63 @@
 .wp-block-nkg-tw-group.is-empty .block-editor-block-list__empty-block-inserter {
   margin: 0 auto;
 }
+/* Kadence-style border/margin/padding control grid for SpacingControlPanel */
+.tw-spacing-control-grid {
+  display: grid;
+  grid-template-columns: 60px 60px;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.tw-spacing-control-grid .tw-spacing-top {
+  grid-column: 1/span 2;
+  grid-row: 1;
+  justify-self: center;
+}
+.tw-spacing-control-grid .tw-spacing-left {
+  grid-column: 1;
+  grid-row: 2;
+  justify-self: end;
+}
+.tw-spacing-control-grid .tw-spacing-right {
+  grid-column: 2;
+  grid-row: 2;
+  justify-self: start;
+}
+.tw-spacing-control-grid .tw-spacing-bottom {
+  grid-column: 1/span 2;
+  grid-row: 3;
+  justify-self: center;
+}
+/* Optional: style the button/box for better spacing */
+.tw-spacing-control-grid button {
+  width: 100%;
+}
+.tw-color-control-box {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  margin-left: 6px;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+.tw-color-control-box[aria-pressed=true],
+.tw-color-control-box:focus {
+  box-shadow: 0 0 0 2px #007cba;
+}
+.tw-color-control-box svg {
+  display: block;
+}
+.tw-spacing-side-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}

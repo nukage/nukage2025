@@ -30,3 +30,25 @@ function nkg_example_dynamic_block_block_init()
 	register_block_type(__DIR__ . '/build');
 }
 add_action('init', 'nkg_example_dynamic_block_block_init');
+
+// Filter to strip inline padding/margin styles from the tw-group block front-end output
+add_filter('render_block', function($block_content, $block) {
+    if (isset($block['blockName']) && $block['blockName'] === 'nkg/tw-group') {
+        // Remove padding/margin inline styles from the wrapper div
+        $block_content = preg_replace_callback(
+            '/(<div[^>]+)style="([^"]*)"([^>]*>)/',
+            function($matches) {
+                // Remove padding/margin from style attribute
+                $style = preg_replace('/(?:padding|margin)[^:;]+:[^;]+;?/', '', $matches[2]);
+                // If style is now empty, remove the attribute entirely
+                $style = trim($style);
+                if ($style === '') {
+                    return $matches[1] . $matches[3];
+                }
+                return $matches[1] . 'style="' . $style . '"' . $matches[3];
+            },
+            $block_content
+        );
+    }
+    return $block_content;
+}, 10, 2);

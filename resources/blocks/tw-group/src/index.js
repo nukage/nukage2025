@@ -19,6 +19,8 @@ import './style.scss';
  */
 import Edit from './edit';
 import metadata from './block.json';
+import styleBuilder from './styleBuilder';
+import gutenbergToStyleBlocks from './gutenbergToStyleBlocks';
 
 // Custom SVG icon as a React element (matches core/group)
 const customGroupIcon = (
@@ -57,6 +59,21 @@ const transforms = {
     ],
 };
 
+// Helper to convert CSS string to object for style prop
+function cssStringToObject(cssString) {
+    const styleObj = {};
+    if (!cssString || typeof cssString !== 'string') return styleObj;
+    cssString.split(';').forEach(rule => {
+        const [property, value] = rule.split(':').map(s => s && s.trim());
+        if (property && value) {
+            // Convert kebab-case to camelCase
+            const camelProp = property.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
+            styleObj[camelProp] = value;
+        }
+    });
+    return styleObj;
+}
+
 /**
  * Every block starts by registering a new block type definition.
  *
@@ -66,5 +83,26 @@ registerBlockType( metadata.name, {
     ...metadata,
     icon: customGroupIcon,
     edit: Edit,
+    save: ( { attributes } ) => {
+        // Map Gutenberg attributes to style blocks
+        const styleBlocks = gutenbergToStyleBlocks(attributes);
+        // Generate Tailwind classes and styles
+        const { classes, style, attributes: extraAttrs } = styleBuilder(styleBlocks);
+        const { lineHeight, letterSpacing } = attributes;
+
+        return (
+            <div
+                {...wp.blockEditor.useBlockProps.save({
+                    // className: classes,
+                    // style: cssStringToObject(style), // convert string to object for save
+                    ...extraAttrs,
+                    // ...(lineHeight ? { 'data-line-height': lineHeight } : {}),
+                    // ...(letterSpacing ? { 'data-letter-spacing': letterSpacing } : {}),
+                })}
+            >
+                <wp.blockEditor.InnerBlocks.Content />
+            </div>
+        );
+    },
     transforms,
 } );
