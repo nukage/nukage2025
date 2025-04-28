@@ -176,6 +176,14 @@ export default function styleBuilder(styleBlocks = []) {
             if (styleBlock.width_options && styleBlock.width_options !== 'default') {
                 builderClasses += 'w-' + styleBlock.width_options + ' ';
             }
+        } else if (styleBlock.acf_fc_layout === 'border_radius') {
+            if (styleBlock.border_radius) {
+                Object.entries(styleBlock.border_radius).forEach(([cssProp, value]) => {
+                    if (cssProp && value) {
+                        builderStyle += `${cssProp}: ${value}; `;
+                    }
+                });
+            }
         } else if (styleBlock.acf_fc_layout === 'custom_attributes') {
             if (Array.isArray(styleBlock.custom_attributes)) {
                 for (const item of styleBlock.custom_attributes) {

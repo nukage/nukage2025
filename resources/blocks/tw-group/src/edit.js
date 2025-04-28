@@ -31,12 +31,14 @@ import './editor.scss';
  *
  * @return {Element} Element to render.
  */
-import { PanelBody, Button, Popover, ColorPalette } from '@wordpress/components';
+import { PanelBody, Button, Popover, ColorPalette, SelectControl, ButtonGroup, IconButton } from '@wordpress/components';
 import { useState, useRef, useEffect } from 'react';
 import SpacingControlPanel from './SpacingControlPanel';
 import ColorPanel from './ColorPanel';
 import AlignmentPanel from './AlignmentPanel';
 import TypographyPanel from './TypographyPanel';
+import ContainerType from './ContainerType';
+import LayoutPanel from './LayoutPanel';
 
 // Helper to convert CSS string to object for editor style prop
 function cssStringToObject(cssString) {
@@ -83,6 +85,11 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
         label = '',
         className = '',
         align = 'none',
+        containerType = 'block',
+        flexDirection = 'row',
+        flexJustify = 'start',
+        flexWrap = 'nowrap',
+        gap = '',
     } = attributes || {};
 
     // More robust empty check
@@ -96,41 +103,24 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
     return (
         <>
             <InspectorControls>
-				<PanelBody title="Typography" initialOpen={true}>
-                <TypographyPanel attributes={attributes} setAttributes={setAttributes} />
+                <LayoutPanel attributes={attributes} setAttributes={setAttributes} />
+                <PanelBody title="Typography" initialOpen={true}>
+                  <TypographyPanel attributes={attributes} setAttributes={setAttributes} />
                 </PanelBody>
                 <ColorPanel attributes={attributes} setAttributes={setAttributes} />
                 <PanelBody title="Border" initialOpen={true}>
                   <SpacingControlPanel
-                    label="Border"
-                    attributePrefix="borderWidth"
-                    colorPrefix="borderColor"
                     attributes={attributes}
                     setAttributes={setAttributes}
-                    showLabel={true}
+                    attributePrefix="border"
+                    controls={{
+                      top: true,
+                      right: true,
+                      bottom: true,
+                      left: true,
+                      radius: true,
+                    }}
                   />
-                </PanelBody>
-                <PanelBody title="Spacing" initialOpen={false}>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-                    <SpacingControlPanel
-                      label="Margin"
-                      attributePrefix="margin"
-                      colorPrefix={undefined}
-                      attributes={attributes}
-                      setAttributes={setAttributes}
-                      step={1}
-                      unit="px"
-                    />
-                    <SpacingControlPanel
-                      label="Padding"
-                      attributePrefix="padding"
-                      colorPrefix={undefined}
-                      attributes={attributes}
-                      setAttributes={setAttributes}
-                      step={1}
-                      unit="px"
-                    />
-                  </div>
                 </PanelBody>
             </InspectorControls>
 

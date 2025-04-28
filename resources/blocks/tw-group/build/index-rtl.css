@@ -83,3 +83,36 @@
   align-items: center;
   gap: 4px;
 }
+.tw-spacing-corners-grid {
+  display: grid;
+  grid-template-columns: 60px 60px;
+  grid-template-rows: 60px 60px;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.tw-spacing-corner-topleft {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: end;
+  align-self: start;
+}
+.tw-spacing-corner-topright {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: start;
+  align-self: start;
+}
+.tw-spacing-corner-bottomright {
+  grid-column: 2;
+  grid-row: 2;
+  justify-self: start;
+  align-self: end;
+}
+.tw-spacing-corner-bottomleft {
+  grid-column: 1;
+  grid-row: 2;
+  justify-self: end;
+  align-self: end;
+}

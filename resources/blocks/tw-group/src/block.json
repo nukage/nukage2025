@@ -167,6 +167,42 @@
         "spacingLinked": {
             "type": "boolean",
             "default": true
+        },
+        "borderRadiusTopLeft": {
+            "type": "string",
+            "default": ""
+        },
+        "borderRadiusTopRight": {
+            "type": "string",
+            "default": ""
+        },
+        "borderRadiusBottomRight": {
+            "type": "string",
+            "default": ""
+        },
+        "borderRadiusBottomLeft": {
+            "type": "string",
+            "default": ""
+        },
+        "containerType": {
+            "type": "string",
+            "default": "block"
+        },
+        "flexJustify": {
+            "type": "string",
+            "default": "start"
+        },
+        "flexDirection": {
+            "type": "string",
+            "default": "row"
+        },
+        "flexWrap": {
+            "type": "string",
+            "default": "nowrap"
+        },
+        "gap": {
+            "type": "string",
+            "default": ""
         }
     },
     "textdomain": "tw-group",

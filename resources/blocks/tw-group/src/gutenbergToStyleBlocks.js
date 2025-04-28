@@ -116,6 +116,32 @@ export default function gutenbergToStyleBlocks(attributes = {}) {
         });
     }
 
+    // Border Radius (Corners)
+    const borderRadiusCorners = [
+        'TopLeft', 'TopRight', 'BottomRight', 'BottomLeft',
+    ];
+    let hasCornerRadius = false;
+    borderRadiusCorners.forEach(corner => {
+        if (attributes[`borderRadius${corner}`]) {
+            hasCornerRadius = true;
+        }
+    });
+    if (hasCornerRadius) {
+        const borderRadiusStyles = {};
+        borderRadiusCorners.forEach(corner => {
+            const value = attributes[`borderRadius${corner}`];
+            if (value) {
+                // Map to CSS properties
+                const cssProp = `border-${corner.replace('Top', 'top-').replace('Bottom', 'bottom-').replace('Left', 'left').replace('Right', 'right')}-radius`;
+                borderRadiusStyles[cssProp] = value;
+            }
+        });
+        styleBlocks.push({
+            acf_fc_layout: 'border_radius',
+            border_radius: borderRadiusStyles,
+        });
+    }
+
     // Border, shadow, etc. can be added similarly as needed.
 
     return styleBlocks;

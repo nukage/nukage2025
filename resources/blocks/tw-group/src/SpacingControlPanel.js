@@ -3,6 +3,7 @@ import { Button, Popover, ColorPalette, __experimentalUnitControl as UnitControl
 import { useSetting } from '@wordpress/block-editor';
 
 const SIDES = ['Top', 'Right', 'Bottom', 'Left'];
+const CORNERS = ['TopLeft', 'TopRight', 'BottomRight', 'BottomLeft'];
 
 function getSpacingPresets() {
   const spacingSizes = useSetting('spacing.spacingSizes') || [];
@@ -58,9 +59,11 @@ export default function SpacingControlPanel({
   step = 1,
   unit = 'px',
   showLabel = true,
+  mode = 'sides', // 'sides' (default) or 'corners'
 }) {
   // Use attribute for linked state
   const linked = attributes.spacingLinked !== undefined ? attributes.spacingLinked : true;
+  const SIDES_OR_CORNERS = mode === 'corners' ? CORNERS : SIDES;
   const setLinked = (val) => setAttributes({ spacingLinked: val });
   const [showPopover, setShowPopover] = React.useState(false);
   const [popoverSide, setPopoverSide] = React.useState('Top');
@@ -68,15 +71,27 @@ export default function SpacingControlPanel({
   const [colorPopoverSide, setColorPopoverSide] = React.useState('Top');
   const buttonRefs = useRef({});
   const colorButtonRefs = useRef({});
-  const customInputRefs = useRef({ Top: null, Right: null, Bottom: null, Left: null });
+  const customInputRefs = useRef(
+    mode === 'corners'
+      ? { TopLeft: null, TopRight: null, BottomRight: null, BottomLeft: null }
+      : { Top: null, Right: null, Bottom: null, Left: null }
+  );
   const spacingPresets = getSpacingPresets();
   const colorPalette = getColorPalette();
 
-  const [customMode, setCustomMode] = React.useState({ Top: false, Right: false, Bottom: false, Left: false });
-  const [customValues, setCustomValues] = React.useState({ Top: '', Right: '', Bottom: '', Left: '' });
+  const [customMode, setCustomMode] = React.useState(
+    mode === 'corners'
+      ? { TopLeft: false, TopRight: false, BottomRight: false, BottomLeft: false }
+      : { Top: false, Right: false, Bottom: false, Left: false }
+  );
+  const [customValues, setCustomValues] = React.useState(
+    mode === 'corners'
+      ? { TopLeft: '', TopRight: '', BottomRight: '', BottomLeft: '' }
+      : { Top: '', Right: '', Bottom: '', Left: '' }
+  );
 
   useEffect(() => {
-    SIDES.forEach((side) => {
+    SIDES_OR_CORNERS.forEach((side) => {
       if (customMode[side] && customInputRefs.current[side]) {
         customInputRefs.current[side].focus();
       }
@@ -85,7 +100,7 @@ export default function SpacingControlPanel({
 
   useEffect(() => {
     // On mount or attribute change, sync customMode and customValues to show number box if value is custom
-    SIDES.forEach((side) => {
+    SIDES_OR_CORNERS.forEach((side) => {
       const slug = getSlug(side);
       if (slug && slug.startsWith('custom:')) {
         setCustomMode((prev) => ({ ...prev, [side]: true }));
@@ -98,23 +113,31 @@ export default function SpacingControlPanel({
   const getSlug = (side) => attributes[`${attributePrefix}${side}`] || '';
   const setSlug = (side, slug) => {
     if (linked) {
-      SIDES.forEach((s) => setAttributes({ [`${attributePrefix}${s}`]: slug }));
+      SIDES_OR_CORNERS.forEach((s) => setAttributes({ [`${attributePrefix}${s}`]: slug }));
     } else {
       setAttributes({ [`${attributePrefix}${side}`]: slug });
     }
     setShowPopover(false);
   };
   const reset = () => {
-    SIDES.forEach((s) => {
+    SIDES_OR_CORNERS.forEach((s) => {
       setAttributes({ [`${attributePrefix}${s}`]: '' });
     });
-    setCustomMode({ Top: false, Right: false, Bottom: false, Left: false });
-    setCustomValues({ Top: '', Right: '', Bottom: '', Left: '' });
+    setCustomMode(
+      mode === 'corners'
+        ? { TopLeft: false, TopRight: false, BottomRight: false, BottomLeft: false }
+        : { Top: false, Right: false, Bottom: false, Left: false }
+    );
+    setCustomValues(
+      mode === 'corners'
+        ? { TopLeft: '', TopRight: '', BottomRight: '', BottomLeft: '' }
+        : { Top: '', Right: '', Bottom: '', Left: '' }
+    );
   };
   const getColor = (side) => attributes[`${colorPrefix}${side}`] || '';
   const setColor = (side, color) => {
     if (linked) {
-      SIDES.forEach((s) => setAttributes({ [`${colorPrefix}${s}`]: color }));
+      SIDES_OR_CORNERS.forEach((s) => setAttributes({ [`${colorPrefix}${s}`]: color }));
     } else {
       setAttributes({ [`${colorPrefix}${side}`]: color });
     }
@@ -212,75 +235,147 @@ export default function SpacingControlPanel({
           )}
         </div>
       ) : (
-        <div className="tw-spacing-control-grid">
-          {SIDES.map((side) => (
-            <div key={side} className={`tw-spacing-${side.toLowerCase()}`}>
-              <div style={{ fontSize: 12, marginBottom: 2 }}>{side}</div>
-              <div className="tw-spacing-side-row">
-                {colorPrefix && (
-                  <ColorControlBox color={getColor(side)} onClick={() => { setColorPopoverSide(side); setShowColorPopover(true); }} ref={el => colorButtonRefs.current[side] = el} />
-                )}
-                {customMode[side] ? (
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-                    <UnitControl
-                      value={customValues[side]}
-                      onChange={value => handleCustomChange(side, value)}
-                      __next40pxDefaultSize
-                      style={{ width: 120 }}
+        mode === 'corners' ? (
+          <div className="tw-spacing-corners-grid">
+            {CORNERS.map((corner) => (
+              <div key={corner} className={`tw-spacing-corner-${corner.toLowerCase()}`}>
+                <div style={{ fontSize: 12, marginBottom: 2 }}>{corner.replace(/([A-Z])/g, ' $1').trim()}</div>
+                <div className="tw-spacing-side-row">
+                  {colorPrefix && (
+                    <ColorControlBox color={getColor(corner)} onClick={() => { setColorPopoverSide(corner); setShowColorPopover(true); }} ref={el => colorButtonRefs.current[corner] = el} />
+                  )}
+                  {customMode[corner] ? (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                      <UnitControl
+                        value={customValues[corner]}
+                        onChange={value => handleCustomChange(corner, value)}
+                        __next40pxDefaultSize
+                        style={{ width: 120 }}
+                      />
+                      <Button isDestructive onClick={() => exitCustomMode(corner)} size="small">×</Button>
+                    </div>
+                  ) : (
+                    <Button
+                      ref={el => (buttonRefs.current[corner] = el)}
+                      onClick={() => {
+                        setPopoverSide(corner);
+                        setShowPopover(true);
+                      }}
+                      variant="secondary"
+                      style={{ width: '100%' }}
+                    >
+                      {getSlug(corner) ? spacingPresets.find(p => p.slug === getSlug(corner))?.name || getSlug(corner) : 'Select'}
+                    </Button>
+                  )}
+                </div>
+                {colorPrefix && showColorPopover && colorPopoverSide === corner && (
+                  <Popover anchorRef={colorButtonRefs.current[corner]} onClose={() => setShowColorPopover(false)}>
+                    <ColorPalette
+                      colors={colorPalette}
+                      value={getColor(corner)}
+                      onChange={(color) => setColor(corner, color)}
+                      clearable
                     />
-                    <Button isDestructive onClick={() => exitCustomMode(side)} size="small">×</Button>
-                  </div>
-                ) : (
-                  <Button
-                    ref={el => (buttonRefs.current[side] = el)}
-                    onClick={() => {
-                      setPopoverSide(side);
-                      setShowPopover(true);
-                    }}
-                    variant="secondary"
-                    style={{ width: '100%' }}
-                  >
-                    {getSlug(side) ? spacingPresets.find(p => p.slug === getSlug(side))?.name || getSlug(side) : 'Select'}
-                  </Button>
+                  </Popover>
                 )}
-              </div>
-              {colorPrefix && showColorPopover && colorPopoverSide === side && (
-                <Popover anchorRef={colorButtonRefs.current[side]} onClose={() => setShowColorPopover(false)}>
-                  <ColorPalette
-                    colors={colorPalette}
-                    value={getColor(side)}
-                    onChange={(color) => setColor(side, color)}
-                    clearable
-                  />
-                </Popover>
-              )}
-              {showPopover && popoverSide === side && (
-                <Popover anchorRef={buttonRefs.current[side]} onClose={() => setShowPopover(false)}>
-                  <div style={{ padding: 8, minWidth: 180 }}>
-                    {spacingPresets.map((preset) => (
+                {showPopover && popoverSide === corner && (
+                  <Popover anchorRef={buttonRefs.current[corner]} onClose={() => setShowPopover(false)}>
+                    <div style={{ padding: 8, minWidth: 180 }}>
+                      {spacingPresets.map((preset) => (
+                        <Button
+                          key={preset.slug}
+                          isPressed={getSlug(corner) === preset.slug}
+                          onClick={() => setSlug(corner, preset.slug)}
+                          style={{ marginBottom: 4, width: '100%' }}
+                        >
+                          {preset.name}
+                        </Button>
+                      ))}
                       <Button
-                        key={preset.slug}
-                        isPressed={getSlug(side) === preset.slug}
-                        onClick={() => setSlug(side, preset.slug)}
+                        key="custom"
+                        isPressed={getSlug(corner).startsWith('custom:')}
+                        onClick={() => enterCustomMode(corner)}
                         style={{ marginBottom: 4, width: '100%' }}
                       >
-                        {preset.name}
+                        Custom…
                       </Button>
-                    ))}
+                    </div>
+                  </Popover>
+                )}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="tw-spacing-control-grid">
+            {SIDES.map((side) => (
+              <div key={side} className={`tw-spacing-${side.toLowerCase()}`}>
+                <div style={{ fontSize: 12, marginBottom: 2 }}>{side}</div>
+                <div className="tw-spacing-side-row">
+                  {colorPrefix && (
+                    <ColorControlBox color={getColor(side)} onClick={() => { setColorPopoverSide(side); setShowColorPopover(true); }} ref={el => colorButtonRefs.current[side] = el} />
+                  )}
+                  {customMode[side] ? (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                      <UnitControl
+                        value={customValues[side]}
+                        onChange={value => handleCustomChange(side, value)}
+                        __next40pxDefaultSize
+                        style={{ width: 120 }}
+                      />
+                      <Button isDestructive onClick={() => exitCustomMode(side)} size="small">×</Button>
+                    </div>
+                  ) : (
                     <Button
-                      key="custom"
-                      isPressed={getSlug(side).startsWith('custom:')}
-                      onClick={() => enterCustomMode(side)}
-                      style={{ marginBottom: 4, width: '100%' }}
+                      ref={el => (buttonRefs.current[side] = el)}
+                      onClick={() => {
+                        setPopoverSide(side);
+                        setShowPopover(true);
+                      }}
+                      variant="secondary"
+                      style={{ width: '100%' }}
                     >
-                      Custom…
+                      {getSlug(side) ? spacingPresets.find(p => p.slug === getSlug(side))?.name || getSlug(side) : 'Select'}
                     </Button>
-                  </div>
-                </Popover>
-              )}
-            </div>
-          ))}
-        </div>
+                  )}
+                </div>
+                {colorPrefix && showColorPopover && colorPopoverSide === side && (
+                  <Popover anchorRef={colorButtonRefs.current[side]} onClose={() => setShowColorPopover(false)}>
+                    <ColorPalette
+                      colors={colorPalette}
+                      value={getColor(side)}
+                      onChange={(color) => setColor(side, color)}
+                      clearable
+                    />
+                  </Popover>
+                )}
+                {showPopover && popoverSide === side && (
+                  <Popover anchorRef={buttonRefs.current[side]} onClose={() => setShowPopover(false)}>
+                    <div style={{ padding: 8, minWidth: 180 }}>
+                      {spacingPresets.map((preset) => (
+                        <Button
+                          key={preset.slug}
+                          isPressed={getSlug(side) === preset.slug}
+                          onClick={() => setSlug(side, preset.slug)}
+                          style={{ marginBottom: 4, width: '100%' }}
+                        >
+                          {preset.name}
+                        </Button>
+                      ))}
+                      <Button
+                        key="custom"
+                        isPressed={getSlug(side).startsWith('custom:')}
+                        onClick={() => enterCustomMode(side)}
+                        style={{ marginBottom: 4, width: '100%' }}
+                      >
+                        Custom…
+                      </Button>
+                    </div>
+                  </Popover>
+                )}
+              </div>
+            ))}
+          </div>
+        )
       )}
     </div>
   );
