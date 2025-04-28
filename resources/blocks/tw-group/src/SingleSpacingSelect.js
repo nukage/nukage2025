@@ -14,12 +14,15 @@ function getSpacingPresets() {
   ];
 }
 
-export default function SingleSpacingSelect({ label = 'Spacing', value, onChange, allowNone = true }) {
+// Accepts a custom list of presets for reusability (e.g. for line height)
+// Accepts `units` prop to restrict allowed units in UnitControl
+export default function SingleSpacingSelect({ label = 'Spacing', value, onChange, allowNone = true, presets, units }) {
   const buttonRef = useRef();
   const [showPopover, setShowPopover] = useState(false);
   const [customMode, setCustomMode] = useState(value && value.startsWith('custom:'));
   const [customValue, setCustomValue] = useState(customMode ? value.replace('custom:', '') : '');
-  const spacingPresets = getSpacingPresets();
+  // Use provided presets or fall back to spacing presets
+  const spacingPresets = presets || getSpacingPresets();
 
   useEffect(() => {
     if (value && value.startsWith('custom:')) {
@@ -59,6 +62,7 @@ export default function SingleSpacingSelect({ label = 'Spacing', value, onChange
             onChange={handleCustomChange}
             __next40pxDefaultSize
             style={{ width: 120 }}
+            units={units}
           />
           <Button isDestructive onClick={handleExitCustom} size="small">×</Button>
         </div>

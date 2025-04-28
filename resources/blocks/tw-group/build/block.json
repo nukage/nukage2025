@@ -203,6 +203,22 @@
     "gap": {
       "type": "string",
       "default": ""
+    },
+    "gridMode": {
+      "type": "string",
+      "default": "auto"
+    },
+    "gridColumnWidth": {
+      "type": "string",
+      "default": ""
+    },
+    "gridColumns": {
+      "type": "string",
+      "default": "3"
+    },
+    "gridTemplateColumns": {
+      "type": "string",
+      "default": ""
     }
   },
   "textdomain": "tw-group",

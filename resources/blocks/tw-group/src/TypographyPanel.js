@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { PanelBody, SelectControl, Button, ToolbarGroup, ToolbarButton, DropdownMenu, MenuItem, MenuGroup } from '@wordpress/components';
 import { useSetting } from '@wordpress/block-editor';
 import { FontSizePicker } from '@wordpress/block-editor';
+import SingleSpacingSelect from './SingleSpacingSelect';
 
 const FONT_SIZES = ['S', 'M', 'L', 'XL', 'XXL'];
 const LETTER_CASES = [
@@ -115,6 +116,35 @@ export default function TypographyPanel({ attributes, setAttributes }) {
   // All section label styles
   const sectionLabelStyle = { fontWeight: 500, fontSize: 11, marginBottom: 2, textTransform: 'uppercase' };
 
+  // Use safeLineHeights for the popover, prepending a Default option
+  const lineHeightPresets = [
+    { slug: '', name: 'Default', value: '' },
+    ...safeLineHeights
+  ];
+
+  // Define allowed units for line height: unitless, px, em, rem, %
+  const lineHeightUnits = [
+    { value: '', label: ' ' }, 
+    { value: 'px', label: 'px' },
+    { value: 'em', label: 'em' },
+    { value: 'rem', label: 'rem' },
+    { value: '%', label: '%' },
+  ];
+
+  // Use safeLetterSpacings for the popover, prepending a Default option
+  const letterSpacingPresets = [
+    { slug: '', name: 'Default', value: '' },
+    ...safeLetterSpacings
+  ];
+
+  // Define allowed units for letter spacing: px, em, rem, %
+  const letterSpacingUnits = [
+    { value: 'px', label: 'px' },
+    { value: 'em', label: 'em' },
+    { value: 'rem', label: 'rem' },
+    { value: '%', label: '%' },
+  ];
+
   return (
     <div className="tw-typography-section" style={{ marginBottom: 24 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
@@ -205,30 +235,22 @@ export default function TypographyPanel({ attributes, setAttributes }) {
         )}
         <div style={{ display: 'flex', gap: 8 }}>
           {visible.includes('lineHeight') && (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-              <span style={sectionLabelStyle}>LINE HEIGHT</span>
-              <SelectControl
-                value={attributes.lineHeight ?? ''}
-                options={[
-                  { label: 'Default', value: '' },
-                  ...safeLineHeights.map(lh => ({ label: lh.name + ' (' + lh.value + ')', value: lh.value }))
-                ]}
-                onChange={lineHeight => setAttributes({ lineHeight })}
-              />
-            </div>
+            <SingleSpacingSelect
+              label="Line Height"
+              value={attributes.lineHeight}
+              onChange={val => setAttributes({ lineHeight: val })}
+              presets={lineHeightPresets}
+              units={lineHeightUnits}
+            />
           )}
           {visible.includes('letterSpacing') && (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-              <span style={sectionLabelStyle}>LETTER SPACING</span>
-              <SelectControl
-                value={attributes.letterSpacing ?? ''}
-                options={[
-                  { label: 'Default', value: '' },
-                  ...safeLetterSpacings.map(ls => ({ label: ls.name + ' (' + ls.value + ')', value: ls.value }))
-                ]}
-                onChange={letterSpacing => setAttributes({ letterSpacing })}
-              />
-            </div>
+            <SingleSpacingSelect
+              label="Letter Spacing"
+              value={attributes.letterSpacing}
+              onChange={val => setAttributes({ letterSpacing: val })}
+              presets={letterSpacingPresets}
+              units={letterSpacingUnits}
+            />
           )}
         </div>
         {visible.includes('textDecoration') && (

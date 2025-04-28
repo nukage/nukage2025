@@ -159,6 +159,75 @@ export default function SpacingControlPanel({
     setSlug(side, value ? `custom:${value}` : '');
   };
 
+  // Helper to render a single side/corner control (for DRYness)
+  const renderSpacingControl = (side, labelOverride) => (
+    <div key={side} className={`tw-spacing-${side.toLowerCase()}`}>
+      <div style={{ fontSize: 12, marginBottom: 2 }}>{labelOverride || side.replace(/([A-Z])/g, ' $1').trim()}</div>
+      <div className="tw-spacing-side-row">
+        {colorPrefix && (
+          <ColorControlBox color={getColor(side)} onClick={() => { setColorPopoverSide(side); setShowColorPopover(true); }} ref={el => colorButtonRefs.current[side] = el} />
+        )}
+        {customMode[side] ? (
+          <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+            <UnitControl
+              value={customValues[side]}
+              onChange={value => handleCustomChange(side, value)}
+              __next40pxDefaultSize
+              style={{ width: 120 }}
+            />
+            <Button isDestructive onClick={() => exitCustomMode(side)} size="small">×</Button>
+          </div>
+        ) : (
+          <Button
+            ref={el => (buttonRefs.current[side] = el)}
+            onClick={() => {
+              setPopoverSide(side);
+              setShowPopover(true);
+            }}
+            variant="secondary"
+            style={{ width: '100%' }}
+          >
+            {getSlug(side) ? spacingPresets.find(p => p.slug === getSlug(side))?.name || getSlug(side) : 'Select'}
+          </Button>
+        )}
+      </div>
+      {colorPrefix && showColorPopover && colorPopoverSide === side && (
+        <Popover anchorRef={colorButtonRefs.current[side]} onClose={() => setShowColorPopover(false)}>
+          <ColorPalette
+            colors={colorPalette}
+            value={getColor(side)}
+            onChange={(color) => setColor(side, color)}
+            clearable
+          />
+        </Popover>
+      )}
+      {showPopover && popoverSide === side && (
+        <Popover anchorRef={buttonRefs.current[side]} onClose={() => setShowPopover(false)}>
+          <div style={{ padding: 8, minWidth: 180 }}>
+            {spacingPresets.map((preset) => (
+              <Button
+                key={preset.slug}
+                isPressed={getSlug(side) === preset.slug}
+                onClick={() => setSlug(side, preset.slug)}
+                style={{ marginBottom: 4, width: '100%' }}
+              >
+                {preset.name}
+              </Button>
+            ))}
+            <Button
+              key="custom"
+              isPressed={getSlug(side).startsWith('custom:')}
+              onClick={() => enterCustomMode(side)}
+              style={{ marginBottom: 4, width: '100%' }}
+            >
+              Custom…
+            </Button>
+          </div>
+        </Popover>
+      )}
+    </div>
+  );
+
   return (
     <div className="tw-spacing-section">
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
@@ -173,209 +242,11 @@ export default function SpacingControlPanel({
         <Button onClick={reset} variant="secondary" size="small">Reset</Button>
       </div>
       {linked ? (
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          {colorPrefix && (
-            <ColorControlBox color={getColor('Top')} onClick={() => { setColorPopoverSide('Top'); setShowColorPopover(true); }} ref={el => colorButtonRefs.current['Top'] = el} />
-          )}
-          {customMode['Top'] ? (
-            <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-              <UnitControl
-                value={customValues['Top']}
-                onChange={value => handleCustomChange('Top', value)}
-                __next40pxDefaultSize
-                style={{ width: 120 }}
-              />
-              <Button isDestructive onClick={() => exitCustomMode('Top')} size="small">×</Button>
-            </div>
-          ) : (
-            <Button
-              ref={(el) => (buttonRefs.current['Top'] = el)}
-              onClick={() => {
-                setPopoverSide('Top');
-                setShowPopover(true);
-              }}
-              variant="secondary"
-            >
-              {getSlug('Top') ? spacingPresets.find(p => p.slug === getSlug('Top'))?.name || getSlug('Top') : 'Select'}
-            </Button>
-          )}
-          {colorPrefix && showColorPopover && colorPopoverSide === 'Top' && (
-            <Popover anchorRef={colorButtonRefs.current['Top']} onClose={() => setShowColorPopover(false)}>
-              <ColorPalette
-                colors={colorPalette}
-                value={getColor('Top')}
-                onChange={(color) => setColor('Top', color)}
-                clearable
-              />
-            </Popover>
-          )}
-          {showPopover && popoverSide === 'Top' && (
-            <Popover anchorRef={buttonRefs.current['Top']} onClose={() => setShowPopover(false)}>
-              <div style={{ padding: 8, minWidth: 180 }}>
-                {spacingPresets.map((preset) => (
-                  <Button
-                    key={preset.slug}
-                    isPressed={getSlug('Top') === preset.slug}
-                    onClick={() => setSlug('Top', preset.slug)}
-                    style={{ marginBottom: 4, width: '100%' }}
-                  >
-                    {preset.name}
-                  </Button>
-                ))}
-                <Button
-                  key="custom"
-                  isPressed={getSlug('Top').startsWith('custom:')}
-                  onClick={() => enterCustomMode('Top')}
-                  style={{ marginBottom: 4, width: '100%' }}
-                >
-                  Custom…
-                </Button>
-              </div>
-            </Popover>
-          )}
-        </div>
+        renderSpacingControl('Top')
       ) : (
-        mode === 'corners' ? (
-          <div className="tw-spacing-corners-grid">
-            {CORNERS.map((corner) => (
-              <div key={corner} className={`tw-spacing-corner-${corner.toLowerCase()}`}>
-                <div style={{ fontSize: 12, marginBottom: 2 }}>{corner.replace(/([A-Z])/g, ' $1').trim()}</div>
-                <div className="tw-spacing-side-row">
-                  {colorPrefix && (
-                    <ColorControlBox color={getColor(corner)} onClick={() => { setColorPopoverSide(corner); setShowColorPopover(true); }} ref={el => colorButtonRefs.current[corner] = el} />
-                  )}
-                  {customMode[corner] ? (
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-                      <UnitControl
-                        value={customValues[corner]}
-                        onChange={value => handleCustomChange(corner, value)}
-                        __next40pxDefaultSize
-                        style={{ width: 120 }}
-                      />
-                      <Button isDestructive onClick={() => exitCustomMode(corner)} size="small">×</Button>
-                    </div>
-                  ) : (
-                    <Button
-                      ref={el => (buttonRefs.current[corner] = el)}
-                      onClick={() => {
-                        setPopoverSide(corner);
-                        setShowPopover(true);
-                      }}
-                      variant="secondary"
-                      style={{ width: '100%' }}
-                    >
-                      {getSlug(corner) ? spacingPresets.find(p => p.slug === getSlug(corner))?.name || getSlug(corner) : 'Select'}
-                    </Button>
-                  )}
-                </div>
-                {colorPrefix && showColorPopover && colorPopoverSide === corner && (
-                  <Popover anchorRef={colorButtonRefs.current[corner]} onClose={() => setShowColorPopover(false)}>
-                    <ColorPalette
-                      colors={colorPalette}
-                      value={getColor(corner)}
-                      onChange={(color) => setColor(corner, color)}
-                      clearable
-                    />
-                  </Popover>
-                )}
-                {showPopover && popoverSide === corner && (
-                  <Popover anchorRef={buttonRefs.current[corner]} onClose={() => setShowPopover(false)}>
-                    <div style={{ padding: 8, minWidth: 180 }}>
-                      {spacingPresets.map((preset) => (
-                        <Button
-                          key={preset.slug}
-                          isPressed={getSlug(corner) === preset.slug}
-                          onClick={() => setSlug(corner, preset.slug)}
-                          style={{ marginBottom: 4, width: '100%' }}
-                        >
-                          {preset.name}
-                        </Button>
-                      ))}
-                      <Button
-                        key="custom"
-                        isPressed={getSlug(corner).startsWith('custom:')}
-                        onClick={() => enterCustomMode(corner)}
-                        style={{ marginBottom: 4, width: '100%' }}
-                      >
-                        Custom…
-                      </Button>
-                    </div>
-                  </Popover>
-                )}
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="tw-spacing-control-grid">
-            {SIDES.map((side) => (
-              <div key={side} className={`tw-spacing-${side.toLowerCase()}`}>
-                <div style={{ fontSize: 12, marginBottom: 2 }}>{side}</div>
-                <div className="tw-spacing-side-row">
-                  {colorPrefix && (
-                    <ColorControlBox color={getColor(side)} onClick={() => { setColorPopoverSide(side); setShowColorPopover(true); }} ref={el => colorButtonRefs.current[side] = el} />
-                  )}
-                  {customMode[side] ? (
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-                      <UnitControl
-                        value={customValues[side]}
-                        onChange={value => handleCustomChange(side, value)}
-                        __next40pxDefaultSize
-                        style={{ width: 120 }}
-                      />
-                      <Button isDestructive onClick={() => exitCustomMode(side)} size="small">×</Button>
-                    </div>
-                  ) : (
-                    <Button
-                      ref={el => (buttonRefs.current[side] = el)}
-                      onClick={() => {
-                        setPopoverSide(side);
-                        setShowPopover(true);
-                      }}
-                      variant="secondary"
-                      style={{ width: '100%' }}
-                    >
-                      {getSlug(side) ? spacingPresets.find(p => p.slug === getSlug(side))?.name || getSlug(side) : 'Select'}
-                    </Button>
-                  )}
-                </div>
-                {colorPrefix && showColorPopover && colorPopoverSide === side && (
-                  <Popover anchorRef={colorButtonRefs.current[side]} onClose={() => setShowColorPopover(false)}>
-                    <ColorPalette
-                      colors={colorPalette}
-                      value={getColor(side)}
-                      onChange={(color) => setColor(side, color)}
-                      clearable
-                    />
-                  </Popover>
-                )}
-                {showPopover && popoverSide === side && (
-                  <Popover anchorRef={buttonRefs.current[side]} onClose={() => setShowPopover(false)}>
-                    <div style={{ padding: 8, minWidth: 180 }}>
-                      {spacingPresets.map((preset) => (
-                        <Button
-                          key={preset.slug}
-                          isPressed={getSlug(side) === preset.slug}
-                          onClick={() => setSlug(side, preset.slug)}
-                          style={{ marginBottom: 4, width: '100%' }}
-                        >
-                          {preset.name}
-                        </Button>
-                      ))}
-                      <Button
-                        key="custom"
-                        isPressed={getSlug(side).startsWith('custom:')}
-                        onClick={() => enterCustomMode(side)}
-                        style={{ marginBottom: 4, width: '100%' }}
-                      >
-                        Custom…
-                      </Button>
-                    </div>
-                  </Popover>
-                )}
-              </div>
-            ))}
-          </div>
-        )
+        mode === 'corners'
+          ? <div className="tw-spacing-corners-grid">{CORNERS.map(corner => renderSpacingControl(corner))}</div>
+          : <div className="tw-spacing-control-grid">{SIDES.map(side => renderSpacingControl(side))}</div>
       )}
     </div>
   );

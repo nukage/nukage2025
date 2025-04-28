@@ -324,7 +324,11 @@ function LayoutPanel({
     flexDirection = 'row',
     flexJustify = 'start',
     flexWrap = 'nowrap',
-    gap = ''
+    gap = '',
+    gridMode = 'auto',
+    gridColumnWidth = '',
+    gridColumns = '3',
+    gridTemplateColumns = ''
   } = attributes || {};
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Layout', 'tw-group'),
@@ -363,7 +367,7 @@ function LayoutPanel({
             label: "Start",
             isPressed: flexJustify === 'start',
             onClick: () => setAttributes({
-              flexJustify: 'start'
+              flexJustify: flexJustify === 'start' ? '' : 'start'
             }),
             style: {
               border: flexJustify === 'start' ? '2px solid #007cba' : undefined
@@ -384,7 +388,7 @@ function LayoutPanel({
             label: "Center",
             isPressed: flexJustify === 'center',
             onClick: () => setAttributes({
-              flexJustify: 'center'
+              flexJustify: flexJustify === 'center' ? '' : 'center'
             }),
             style: {
               border: flexJustify === 'center' ? '2px solid #007cba' : undefined
@@ -405,7 +409,7 @@ function LayoutPanel({
             label: "End",
             isPressed: flexJustify === 'end',
             onClick: () => setAttributes({
-              flexJustify: 'end'
+              flexJustify: flexJustify === 'end' ? '' : 'end'
             }),
             style: {
               border: flexJustify === 'end' ? '2px solid #007cba' : undefined
@@ -432,7 +436,7 @@ function LayoutPanel({
             label: "Space Between",
             isPressed: flexJustify === 'space-between',
             onClick: () => setAttributes({
-              flexJustify: 'space-between'
+              flexJustify: flexJustify === 'space-between' ? '' : 'space-between'
             }),
             style: {
               border: flexJustify === 'space-between' ? '2px solid #007cba' : undefined
@@ -459,7 +463,7 @@ function LayoutPanel({
             label: "Space Around",
             isPressed: flexJustify === 'space-around',
             onClick: () => setAttributes({
-              flexJustify: 'space-around'
+              flexJustify: flexJustify === 'space-around' ? '' : 'space-around'
             }),
             style: {
               border: flexJustify === 'space-around' ? '2px solid #007cba' : undefined
@@ -486,7 +490,7 @@ function LayoutPanel({
             label: "Space Evenly",
             isPressed: flexJustify === 'space-evenly',
             onClick: () => setAttributes({
-              flexJustify: 'space-evenly'
+              flexJustify: flexJustify === 'space-evenly' ? '' : 'space-evenly'
             }),
             style: {
               border: flexJustify === 'space-evenly' ? '2px solid #007cba' : undefined
@@ -524,7 +528,7 @@ function LayoutPanel({
             label: "Row",
             isPressed: flexDirection === 'row',
             onClick: () => setAttributes({
-              flexDirection: 'row'
+              flexDirection: flexDirection === 'row' ? '' : 'row'
             }),
             style: {
               border: flexDirection === 'row' ? '2px solid #007cba' : undefined
@@ -548,7 +552,7 @@ function LayoutPanel({
             label: "Row Reverse",
             isPressed: flexDirection === 'row-reverse',
             onClick: () => setAttributes({
-              flexDirection: 'row-reverse'
+              flexDirection: flexDirection === 'row-reverse' ? '' : 'row-reverse'
             }),
             style: {
               border: flexDirection === 'row-reverse' ? '2px solid #007cba' : undefined
@@ -572,7 +576,7 @@ function LayoutPanel({
             label: "Column",
             isPressed: flexDirection === 'column',
             onClick: () => setAttributes({
-              flexDirection: 'column'
+              flexDirection: flexDirection === 'column' ? '' : 'column'
             }),
             style: {
               border: flexDirection === 'column' ? '2px solid #007cba' : undefined
@@ -596,7 +600,7 @@ function LayoutPanel({
             label: "Column Reverse",
             isPressed: flexDirection === 'column-reverse',
             onClick: () => setAttributes({
-              flexDirection: 'column-reverse'
+              flexDirection: flexDirection === 'column-reverse' ? '' : 'column-reverse'
             }),
             style: {
               border: flexDirection === 'column-reverse' ? '2px solid #007cba' : undefined
@@ -639,7 +643,7 @@ function LayoutPanel({
             label: "No Wrap",
             isPressed: flexWrap === 'nowrap',
             onClick: () => setAttributes({
-              flexWrap: 'nowrap'
+              flexWrap: flexWrap === 'nowrap' ? '' : 'nowrap'
             }),
             style: {
               border: flexWrap === 'nowrap' ? '2px solid #007cba' : undefined
@@ -666,7 +670,7 @@ function LayoutPanel({
             label: "Wrap",
             isPressed: flexWrap === 'wrap',
             onClick: () => setAttributes({
-              flexWrap: 'wrap'
+              flexWrap: flexWrap === 'wrap' ? '' : 'wrap'
             }),
             style: {
               border: flexWrap === 'wrap' ? '2px solid #007cba' : undefined
@@ -696,7 +700,7 @@ function LayoutPanel({
             label: "Wrap Reverse",
             isPressed: flexWrap === 'wrap-reverse',
             onClick: () => setAttributes({
-              flexWrap: 'wrap-reverse'
+              flexWrap: flexWrap === 'wrap-reverse' ? '' : 'wrap-reverse'
             }),
             style: {
               border: flexWrap === 'wrap-reverse' ? '2px solid #007cba' : undefined
@@ -704,18 +708,199 @@ function LayoutPanel({
           })]
         })]
       })]
-    }), (containerType === 'flex' || containerType === 'grid') && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    }), containerType === 'grid' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
       style: {
         marginTop: 16
       },
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_SingleSpacingSelect__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        label: "Gap",
-        value: gap !== null && gap !== void 0 ? gap : '',
-        onChange: gap => setAttributes({
-          gap
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+        style: {
+          fontWeight: 600,
+          marginBottom: 8,
+          display: 'block'
+        },
+        children: "Grid Mode"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.ButtonGroup, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.IconButton, {
+          icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("svg", {
+            width: "24",
+            height: "24",
+            viewBox: "0 0 24 24",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
+              x: "3",
+              y: "7",
+              width: "18",
+              height: "10",
+              rx: "2",
+              fill: gridMode === 'auto' ? '#007cba' : '#ccc'
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("text", {
+              x: "12",
+              y: "15",
+              textAnchor: "middle",
+              fontSize: "10",
+              fill: "#fff",
+              children: "A"
+            })]
+          }),
+          label: "Auto",
+          isPressed: gridMode === 'auto',
+          onClick: () => setAttributes({
+            gridMode: gridMode === 'auto' ? '' : 'auto'
+          }),
+          style: {
+            border: gridMode === 'auto' ? '2px solid #007cba' : undefined
+          }
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.IconButton, {
+          icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("svg", {
+            width: "24",
+            height: "24",
+            viewBox: "0 0 24 24",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
+              x: "3",
+              y: "7",
+              width: "18",
+              height: "10",
+              rx: "2",
+              fill: gridMode === 'manual' ? '#007cba' : '#ccc'
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("text", {
+              x: "12",
+              y: "15",
+              textAnchor: "middle",
+              fontSize: "10",
+              fill: "#fff",
+              children: "M"
+            })]
+          }),
+          label: "Manual",
+          isPressed: gridMode === 'manual',
+          onClick: () => setAttributes({
+            gridMode: gridMode === 'manual' ? '' : 'manual'
+          }),
+          style: {
+            border: gridMode === 'manual' ? '2px solid #007cba' : undefined
+          }
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.IconButton, {
+          icon: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("svg", {
+            width: "24",
+            height: "24",
+            viewBox: "0 0 24 24",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("rect", {
+              x: "3",
+              y: "7",
+              width: "18",
+              height: "10",
+              rx: "2",
+              fill: gridMode === 'custom' ? '#007cba' : '#ccc'
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("text", {
+              x: "12",
+              y: "15",
+              textAnchor: "middle",
+              fontSize: "10",
+              fill: "#fff",
+              children: "C"
+            })]
+          }),
+          label: "Custom",
+          isPressed: gridMode === 'custom',
+          onClick: () => setAttributes({
+            gridMode: gridMode === 'custom' ? '' : 'custom'
+          }),
+          style: {
+            border: gridMode === 'custom' ? '2px solid #007cba' : undefined
+          }
+        })]
+      })]
+    }), containerType === 'grid' && gridMode === 'auto' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      style: {
+        marginTop: 16
+      },
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+        style: {
+          fontWeight: 600,
+          marginBottom: 8,
+          display: 'block'
+        },
+        children: "Grid Column Width"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.__experimentalUnitControl, {
+        value: gridColumnWidth || '',
+        onChange: val => setAttributes({
+          gridColumnWidth: val
         }),
-        allowNone: true
-      })
+        __next40pxDefaultSize: true,
+        style: {
+          width: 120
+        },
+        label: false
+      })]
+    }), containerType === 'grid' && gridMode === 'manual' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      style: {
+        marginTop: 16
+      },
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+        style: {
+          fontWeight: 600,
+          marginBottom: 8,
+          display: 'block'
+        },
+        children: "Grid Columns"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+        type: "range",
+        min: "1",
+        max: "12",
+        step: "1",
+        value: parseInt(gridColumns, 10) || 3,
+        onChange: e => setAttributes({
+          gridColumns: e.target.value
+        }),
+        style: {
+          width: 160,
+          marginRight: 12
+        }
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+        style: {
+          minWidth: 24,
+          display: 'inline-block',
+          textAlign: 'center',
+          fontWeight: 600
+        },
+        children: gridColumns
+      })]
+    }), containerType === 'grid' && gridMode === 'custom' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      style: {
+        marginTop: 16
+      },
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+        style: {
+          fontWeight: 600,
+          marginBottom: 8,
+          display: 'block'
+        },
+        children: "Grid Template Columns"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_0__.TextControl, {
+        value: gridTemplateColumns || '',
+        onChange: val => setAttributes({
+          gridTemplateColumns: val
+        }),
+        placeholder: "e.g. 1fr 2fr 1fr or repeat(3, 1fr)"
+      })]
+    }), (containerType === 'flex' || containerType === 'grid') && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      style: {
+        marginTop: 16
+      },
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+        style: {
+          fontWeight: 600,
+          marginBottom: 8,
+          display: 'block'
+        },
+        children: "Gap"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_SingleSpacingSelect__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        value: gap,
+        onChange: val => setAttributes({
+          gap: val
+        }),
+        allowNone: true,
+        label: false
+      })]
     })]
   });
 }
@@ -756,17 +941,23 @@ function getSpacingPresets() {
     value: preset.size
   }))];
 }
+
+// Accepts a custom list of presets for reusability (e.g. for line height)
+// Accepts `units` prop to restrict allowed units in UnitControl
 function SingleSpacingSelect({
   label = 'Spacing',
   value,
   onChange,
-  allowNone = true
+  allowNone = true,
+  presets,
+  units
 }) {
   const buttonRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   const [showPopover, setShowPopover] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [customMode, setCustomMode] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(value && value.startsWith('custom:'));
   const [customValue, setCustomValue] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(customMode ? value.replace('custom:', '') : '');
-  const spacingPresets = getSpacingPresets();
+  // Use provided presets or fall back to spacing presets
+  const spacingPresets = presets || getSpacingPresets();
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     if (value && value.startsWith('custom:')) {
       setCustomMode(true);
@@ -816,7 +1007,8 @@ function SingleSpacingSelect({
         __next40pxDefaultSize: true,
         style: {
           width: 120
-        }
+        },
+        units: units
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
         isDestructive: true,
         onClick: handleExitCustom,
@@ -1107,6 +1299,93 @@ function SpacingControlPanel({
     }));
     setSlug(side, value ? `custom:${value}` : '');
   };
+
+  // Helper to render a single side/corner control (for DRYness)
+  const renderSpacingControl = (side, labelOverride) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    className: `tw-spacing-${side.toLowerCase()}`,
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      style: {
+        fontSize: 12,
+        marginBottom: 2
+      },
+      children: labelOverride || side.replace(/([A-Z])/g, ' $1').trim()
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      className: "tw-spacing-side-row",
+      children: [colorPrefix && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(ColorControlBox, {
+        color: getColor(side),
+        onClick: () => {
+          setColorPopoverSide(side);
+          setShowColorPopover(true);
+        },
+        ref: el => colorButtonRefs.current[side] = el
+      }), customMode[side] ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        style: {
+          display: 'flex',
+          alignItems: 'center',
+          gap: 4
+        },
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalUnitControl, {
+          value: customValues[side],
+          onChange: value => handleCustomChange(side, value),
+          __next40pxDefaultSize: true,
+          style: {
+            width: 120
+          }
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+          isDestructive: true,
+          onClick: () => exitCustomMode(side),
+          size: "small",
+          children: "\xD7"
+        })]
+      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+        ref: el => buttonRefs.current[side] = el,
+        onClick: () => {
+          setPopoverSide(side);
+          setShowPopover(true);
+        },
+        variant: "secondary",
+        style: {
+          width: '100%'
+        },
+        children: getSlug(side) ? spacingPresets.find(p => p.slug === getSlug(side))?.name || getSlug(side) : 'Select'
+      })]
+    }), colorPrefix && showColorPopover && colorPopoverSide === side && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Popover, {
+      anchorRef: colorButtonRefs.current[side],
+      onClose: () => setShowColorPopover(false),
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ColorPalette, {
+        colors: colorPalette,
+        value: getColor(side),
+        onChange: color => setColor(side, color),
+        clearable: true
+      })
+    }), showPopover && popoverSide === side && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Popover, {
+      anchorRef: buttonRefs.current[side],
+      onClose: () => setShowPopover(false),
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        style: {
+          padding: 8,
+          minWidth: 180
+        },
+        children: [spacingPresets.map(preset => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+          isPressed: getSlug(side) === preset.slug,
+          onClick: () => setSlug(side, preset.slug),
+          style: {
+            marginBottom: 4,
+            width: '100%'
+          },
+          children: preset.name
+        }, preset.slug)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+          isPressed: getSlug(side).startsWith('custom:'),
+          onClick: () => enterCustomMode(side),
+          style: {
+            marginBottom: 4,
+            width: '100%'
+          },
+          children: "Custom\u2026"
+        }, "custom")]
+      })
+    })]
+  }, side);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     className: "tw-spacing-section",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
@@ -1142,256 +1421,12 @@ function SpacingControlPanel({
         size: "small",
         children: "Reset"
       })]
-    }), linked ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-      style: {
-        display: 'flex',
-        alignItems: 'center',
-        gap: 8
-      },
-      children: [colorPrefix && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(ColorControlBox, {
-        color: getColor('Top'),
-        onClick: () => {
-          setColorPopoverSide('Top');
-          setShowColorPopover(true);
-        },
-        ref: el => colorButtonRefs.current['Top'] = el
-      }), customMode['Top'] ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        style: {
-          display: 'flex',
-          alignItems: 'center',
-          gap: 4
-        },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalUnitControl, {
-          value: customValues['Top'],
-          onChange: value => handleCustomChange('Top', value),
-          __next40pxDefaultSize: true,
-          style: {
-            width: 120
-          }
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
-          isDestructive: true,
-          onClick: () => exitCustomMode('Top'),
-          size: "small",
-          children: "\xD7"
-        })]
-      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
-        ref: el => buttonRefs.current['Top'] = el,
-        onClick: () => {
-          setPopoverSide('Top');
-          setShowPopover(true);
-        },
-        variant: "secondary",
-        children: getSlug('Top') ? spacingPresets.find(p => p.slug === getSlug('Top'))?.name || getSlug('Top') : 'Select'
-      }), colorPrefix && showColorPopover && colorPopoverSide === 'Top' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Popover, {
-        anchorRef: colorButtonRefs.current['Top'],
-        onClose: () => setShowColorPopover(false),
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ColorPalette, {
-          colors: colorPalette,
-          value: getColor('Top'),
-          onChange: color => setColor('Top', color),
-          clearable: true
-        })
-      }), showPopover && popoverSide === 'Top' && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Popover, {
-        anchorRef: buttonRefs.current['Top'],
-        onClose: () => setShowPopover(false),
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          style: {
-            padding: 8,
-            minWidth: 180
-          },
-          children: [spacingPresets.map(preset => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
-            isPressed: getSlug('Top') === preset.slug,
-            onClick: () => setSlug('Top', preset.slug),
-            style: {
-              marginBottom: 4,
-              width: '100%'
-            },
-            children: preset.name
-          }, preset.slug)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
-            isPressed: getSlug('Top').startsWith('custom:'),
-            onClick: () => enterCustomMode('Top'),
-            style: {
-              marginBottom: 4,
-              width: '100%'
-            },
-            children: "Custom\u2026"
-          }, "custom")]
-        })
-      })]
-    }) : mode === 'corners' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+    }), linked ? renderSpacingControl('Top') : mode === 'corners' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       className: "tw-spacing-corners-grid",
-      children: CORNERS.map(corner => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        className: `tw-spacing-corner-${corner.toLowerCase()}`,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          style: {
-            fontSize: 12,
-            marginBottom: 2
-          },
-          children: corner.replace(/([A-Z])/g, ' $1').trim()
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          className: "tw-spacing-side-row",
-          children: [colorPrefix && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(ColorControlBox, {
-            color: getColor(corner),
-            onClick: () => {
-              setColorPopoverSide(corner);
-              setShowColorPopover(true);
-            },
-            ref: el => colorButtonRefs.current[corner] = el
-          }), customMode[corner] ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            style: {
-              display: 'flex',
-              alignItems: 'center',
-              gap: 4
-            },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalUnitControl, {
-              value: customValues[corner],
-              onChange: value => handleCustomChange(corner, value),
-              __next40pxDefaultSize: true,
-              style: {
-                width: 120
-              }
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
-              isDestructive: true,
-              onClick: () => exitCustomMode(corner),
-              size: "small",
-              children: "\xD7"
-            })]
-          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
-            ref: el => buttonRefs.current[corner] = el,
-            onClick: () => {
-              setPopoverSide(corner);
-              setShowPopover(true);
-            },
-            variant: "secondary",
-            style: {
-              width: '100%'
-            },
-            children: getSlug(corner) ? spacingPresets.find(p => p.slug === getSlug(corner))?.name || getSlug(corner) : 'Select'
-          })]
-        }), colorPrefix && showColorPopover && colorPopoverSide === corner && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Popover, {
-          anchorRef: colorButtonRefs.current[corner],
-          onClose: () => setShowColorPopover(false),
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ColorPalette, {
-            colors: colorPalette,
-            value: getColor(corner),
-            onChange: color => setColor(corner, color),
-            clearable: true
-          })
-        }), showPopover && popoverSide === corner && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Popover, {
-          anchorRef: buttonRefs.current[corner],
-          onClose: () => setShowPopover(false),
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            style: {
-              padding: 8,
-              minWidth: 180
-            },
-            children: [spacingPresets.map(preset => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
-              isPressed: getSlug(corner) === preset.slug,
-              onClick: () => setSlug(corner, preset.slug),
-              style: {
-                marginBottom: 4,
-                width: '100%'
-              },
-              children: preset.name
-            }, preset.slug)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
-              isPressed: getSlug(corner).startsWith('custom:'),
-              onClick: () => enterCustomMode(corner),
-              style: {
-                marginBottom: 4,
-                width: '100%'
-              },
-              children: "Custom\u2026"
-            }, "custom")]
-          })
-        })]
-      }, corner))
+      children: CORNERS.map(corner => renderSpacingControl(corner))
     }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       className: "tw-spacing-control-grid",
-      children: SIDES.map(side => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        className: `tw-spacing-${side.toLowerCase()}`,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          style: {
-            fontSize: 12,
-            marginBottom: 2
-          },
-          children: side
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          className: "tw-spacing-side-row",
-          children: [colorPrefix && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(ColorControlBox, {
-            color: getColor(side),
-            onClick: () => {
-              setColorPopoverSide(side);
-              setShowColorPopover(true);
-            },
-            ref: el => colorButtonRefs.current[side] = el
-          }), customMode[side] ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            style: {
-              display: 'flex',
-              alignItems: 'center',
-              gap: 4
-            },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalUnitControl, {
-              value: customValues[side],
-              onChange: value => handleCustomChange(side, value),
-              __next40pxDefaultSize: true,
-              style: {
-                width: 120
-              }
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
-              isDestructive: true,
-              onClick: () => exitCustomMode(side),
-              size: "small",
-              children: "\xD7"
-            })]
-          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
-            ref: el => buttonRefs.current[side] = el,
-            onClick: () => {
-              setPopoverSide(side);
-              setShowPopover(true);
-            },
-            variant: "secondary",
-            style: {
-              width: '100%'
-            },
-            children: getSlug(side) ? spacingPresets.find(p => p.slug === getSlug(side))?.name || getSlug(side) : 'Select'
-          })]
-        }), colorPrefix && showColorPopover && colorPopoverSide === side && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Popover, {
-          anchorRef: colorButtonRefs.current[side],
-          onClose: () => setShowColorPopover(false),
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ColorPalette, {
-            colors: colorPalette,
-            value: getColor(side),
-            onChange: color => setColor(side, color),
-            clearable: true
-          })
-        }), showPopover && popoverSide === side && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Popover, {
-          anchorRef: buttonRefs.current[side],
-          onClose: () => setShowPopover(false),
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-            style: {
-              padding: 8,
-              minWidth: 180
-            },
-            children: [spacingPresets.map(preset => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
-              isPressed: getSlug(side) === preset.slug,
-              onClick: () => setSlug(side, preset.slug),
-              style: {
-                marginBottom: 4,
-                width: '100%'
-              },
-              children: preset.name
-            }, preset.slug)), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
-              isPressed: getSlug(side).startsWith('custom:'),
-              onClick: () => enterCustomMode(side),
-              style: {
-                marginBottom: 4,
-                width: '100%'
-              },
-              children: "Custom\u2026"
-            }, "custom")]
-          })
-        })]
-      }, side))
+      children: SIDES.map(side => renderSpacingControl(side))
     })]
   });
 }
@@ -1414,8 +1449,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _SingleSpacingSelect__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SingleSpacingSelect */ "./src/SingleSpacingSelect.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
@@ -1451,7 +1488,6 @@ function TypographyPanel({
   attributes,
   setAttributes
 }) {
-  var _attributes$lineHeigh, _attributes$letterSpa;
   const fontFamilies = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useSetting)('typography.fontFamilies');
   const fontSizes = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useSetting)('typography.fontSizes');
   const fontWeightsObj = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useSetting)('custom.fontWeight');
@@ -1505,11 +1541,11 @@ function TypographyPanel({
   const toggleControl = key => {
     setVisible(visible.includes(key) ? visible.filter(k => k !== key) : [...visible, key]);
   };
-  const checkIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("svg", {
+  const checkIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("svg", {
     width: "20",
     height: "20",
     viewBox: "0 0 20 20",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("polyline", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("polyline", {
       points: "4 11 8 15 16 6",
       fill: "none",
       stroke: "currentColor",
@@ -1557,33 +1593,80 @@ function TypographyPanel({
     marginBottom: 2,
     textTransform: 'uppercase'
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+
+  // Use safeLineHeights for the popover, prepending a Default option
+  const lineHeightPresets = [{
+    slug: '',
+    name: 'Default',
+    value: ''
+  }, ...safeLineHeights];
+
+  // Define allowed units for line height: unitless, px, em, rem, %
+  const lineHeightUnits = [{
+    value: '',
+    label: ' '
+  }, {
+    value: 'px',
+    label: 'px'
+  }, {
+    value: 'em',
+    label: 'em'
+  }, {
+    value: 'rem',
+    label: 'rem'
+  }, {
+    value: '%',
+    label: '%'
+  }];
+
+  // Use safeLetterSpacings for the popover, prepending a Default option
+  const letterSpacingPresets = [{
+    slug: '',
+    name: 'Default',
+    value: ''
+  }, ...safeLetterSpacings];
+
+  // Define allowed units for letter spacing: px, em, rem, %
+  const letterSpacingUnits = [{
+    value: 'px',
+    label: 'px'
+  }, {
+    value: 'em',
+    label: 'em'
+  }, {
+    value: 'rem',
+    label: 'rem'
+  }, {
+    value: '%',
+    label: '%'
+  }];
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
     className: "tw-typography-section",
     style: {
       marginBottom: 24
     },
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
       style: {
         display: 'flex',
         alignItems: 'center',
         gap: 8,
         marginBottom: 12
       },
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
         style: {
           fontWeight: 600,
           fontSize: 14
         },
         children: "Typography"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.DropdownMenu, {
-        icon: () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("svg", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.DropdownMenu, {
+        icon: () => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("svg", {
           xmlns: "http://www.w3.org/2000/svg",
           viewBox: "0 0 24 24",
           width: "24",
           height: "24",
           "aria-hidden": "true",
           focusable: "false",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("path", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("path", {
             d: "M13 19h-2v-2h2v2zm0-6h-2v-2h2v2zm0-6h-2V5h2v2z"
           })
         }),
@@ -1593,10 +1676,10 @@ function TypographyPanel({
         },
         children: ({
           onClose
-        }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+        }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
           children: [ALL_CONTROLS.map(ctrl => {
             const hasValue = attributes[ctrl.key] !== undefined && attributes[ctrl.key] !== '';
-            return hasValue ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.MenuItem, {
+            return hasValue ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.MenuItem, {
               isDestructive: true,
               onClick: () => setAttributes({
                 [ctrl.key]: ''
@@ -1605,7 +1688,7 @@ function TypographyPanel({
                 color: '#d63638'
               },
               children: ["Reset ", ctrl.label]
-            }, ctrl.key + '-reset') : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.MenuItem, {
+            }, ctrl.key + '-reset') : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.MenuItem, {
               icon: visible.includes(ctrl.key) ? checkIcon : null,
               isSelected: visible.includes(ctrl.key),
               role: "menuitemcheckbox",
@@ -1614,12 +1697,12 @@ function TypographyPanel({
               },
               children: ctrl.label
             }, ctrl.key);
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
             style: {
               borderTop: '1px solid #eee',
               margin: '8px 0 0 0'
             }
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.MenuItem, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.MenuItem, {
             isDestructive: true,
             onClick: () => {
               resetAll();
@@ -1632,13 +1715,13 @@ function TypographyPanel({
           }, "reset-all")]
         })
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
       style: {
         display: 'flex',
         flexDirection: 'column',
         gap: 16
       },
-      children: [visible.includes('fontFamily') && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
+      children: [visible.includes('fontFamily') && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
         label: "Font",
         value: attributes.fontFamily || '',
         options: [{
@@ -1651,8 +1734,8 @@ function TypographyPanel({
         onChange: fontFamily => setAttributes({
           fontFamily
         })
-      }), visible.includes('fontSize') && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.FontSizePicker, {
+      }), visible.includes('fontSize') && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.FontSizePicker, {
           value: attributes.fontSize || '',
           fontSizes: safeFontSizes,
           fallbackFontSize: undefined,
@@ -1661,7 +1744,7 @@ function TypographyPanel({
             fontSize
           })
         })
-      }), visible.includes('fontAppearance') && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
+      }), visible.includes('fontAppearance') && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
         label: "Appearance",
         value: attributes.fontAppearance || '',
         options: [{
@@ -1674,67 +1757,39 @@ function TypographyPanel({
         onChange: fontAppearance => setAttributes({
           fontAppearance
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
         style: {
           display: 'flex',
           gap: 8
         },
-        children: [visible.includes('lineHeight') && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          style: {
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 4
-          },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-            style: sectionLabelStyle,
-            children: "LINE HEIGHT"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
-            value: (_attributes$lineHeigh = attributes.lineHeight) !== null && _attributes$lineHeigh !== void 0 ? _attributes$lineHeigh : '',
-            options: [{
-              label: 'Default',
-              value: ''
-            }, ...safeLineHeights.map(lh => ({
-              label: lh.name + ' (' + lh.value + ')',
-              value: lh.value
-            }))],
-            onChange: lineHeight => setAttributes({
-              lineHeight
-            })
-          })]
-        }), visible.includes('letterSpacing') && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          style: {
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 4
-          },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-            style: sectionLabelStyle,
-            children: "LETTER SPACING"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
-            value: (_attributes$letterSpa = attributes.letterSpacing) !== null && _attributes$letterSpa !== void 0 ? _attributes$letterSpa : '',
-            options: [{
-              label: 'Default',
-              value: ''
-            }, ...safeLetterSpacings.map(ls => ({
-              label: ls.name + ' (' + ls.value + ')',
-              value: ls.value
-            }))],
-            onChange: letterSpacing => setAttributes({
-              letterSpacing
-            })
-          })]
+        children: [visible.includes('lineHeight') && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_SingleSpacingSelect__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          label: "Line Height",
+          value: attributes.lineHeight,
+          onChange: val => setAttributes({
+            lineHeight: val
+          }),
+          presets: lineHeightPresets,
+          units: lineHeightUnits
+        }), visible.includes('letterSpacing') && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_SingleSpacingSelect__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          label: "Letter Spacing",
+          value: attributes.letterSpacing,
+          onChange: val => setAttributes({
+            letterSpacing: val
+          }),
+          presets: letterSpacingPresets,
+          units: letterSpacingUnits
         })]
-      }), visible.includes('textDecoration') && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      }), visible.includes('textDecoration') && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
         style: {
           display: 'flex',
           flexDirection: 'column',
           gap: 4
         },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
           style: sectionLabelStyle,
           children: "TEXT DECORATION"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToolbarGroup, {
-          children: DECORATIONS.map(dec => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToolbarButton, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToolbarGroup, {
+          children: DECORATIONS.map(dec => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToolbarButton, {
             icon: dec.icon,
             label: dec.label,
             isPressed: attributes.textDecoration === dec.value,
@@ -1743,12 +1798,12 @@ function TypographyPanel({
             })
           }, dec.value))
         })]
-      }), visible.includes('letterCase') && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+      }), visible.includes('letterCase') && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
           style: sectionLabelStyle,
           children: "LETTER CASE"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToolbarGroup, {
-          children: LETTER_CASES.map(lc => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToolbarButton, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToolbarGroup, {
+          children: LETTER_CASES.map(lc => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.ToolbarButton, {
             label: lc.label,
             isPressed: attributes.letterCase === lc.value,
             onClick: () => setAttributes({
@@ -2588,7 +2643,7 @@ module.exports = window["wp"]["i18n"];
   \************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"nkg/tw-group","version":"0.1.0","title":"TW Group","category":"layout","icon":"<svg viewBox=\\"0 0 24 24\\" xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"24\\" height=\\"24\\" aria-hidden=\\"true\\" focusable=\\"false\\"><path d=\\"M18 4h-7c-1.1 0-2 .9-2 2v3H6c-1.1 0-2 .9-2 2v7c0 1.1.9 2 2 2h7c1.1 0 2-.9 2-2v-3h3c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-4.5 14c0 .3-.2.5-.5.5H6c-.3 0-.5-.2-.5-.5v-7c0-.3.2-.5.5-.5h3V13c0 1.1.9 2 2 2h2.5v3zm0-4.5H11c-.3 0-.5-.2-.5-.5v-2.5H13c.3 0 .5.2.5.5v2.5zm5-.5c0 .3-.2.5-.5.5h-3V11c0-1.1-.9-2-2-2h-2.5V6c0-.3.2-.5.5-.5h7c.3 0 .5.2.5.5v7z\\"></path></svg>","description":"A group block with Tailwind class support","example":{},"supports":{"html":false,"color":false,"background":false,"textColor":false,"spacing":false,"border":false,"align":false,"anchor":true,"customClassName":true},"attributes":{"label":{"type":"string","default":""},"layout":{"type":"object"},"backgroundColor":{"type":"string"},"textColor":{"type":"string"},"style":{"type":"object"},"minHeight":{"type":"string"},"borderWidth":{"type":"string","default":""},"borderColor":{"type":"string","default":""},"borderRadius":{"type":"string","default":""},"borderWidthTop":{"type":"string","default":""},"borderWidthRight":{"type":"string","default":""},"borderWidthBottom":{"type":"string","default":""},"borderWidthLeft":{"type":"string","default":""},"borderColorTop":{"type":"string","default":""},"borderColorRight":{"type":"string","default":""},"borderColorBottom":{"type":"string","default":""},"borderColorLeft":{"type":"string","default":""},"borderStyleTop":{"type":"string","default":""},"borderStyleRight":{"type":"string","default":""},"borderStyleBottom":{"type":"string","default":""},"borderStyleLeft":{"type":"string","default":""},"fontFamily":{"type":"string"},"fontSize":{"type":"string"},"fontAppearance":{"type":"string"},"lineHeight":{"type":"string"},"letterSpacing":{"type":"string"},"textDecoration":{"type":"string"},"letterCase":{"type":"string"},"typographyVisible":{"type":"array","items":{"type":"string"}},"anchor":{"type":"string"},"className":{"type":"string"},"marginTop":{"type":"string","default":""},"marginRight":{"type":"string","default":""},"marginBottom":{"type":"string","default":""},"marginLeft":{"type":"string","default":""},"paddingTop":{"type":"string","default":""},"paddingRight":{"type":"string","default":""},"paddingBottom":{"type":"string","default":""},"paddingLeft":{"type":"string","default":""},"spacingLinked":{"type":"boolean","default":true},"borderRadiusTopLeft":{"type":"string","default":""},"borderRadiusTopRight":{"type":"string","default":""},"borderRadiusBottomRight":{"type":"string","default":""},"borderRadiusBottomLeft":{"type":"string","default":""},"containerType":{"type":"string","default":"block"},"flexJustify":{"type":"string","default":"start"},"flexDirection":{"type":"string","default":"row"},"flexWrap":{"type":"string","default":"nowrap"},"gap":{"type":"string","default":""}},"textdomain":"tw-group","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"nkg/tw-group","version":"0.1.0","title":"TW Group","category":"layout","icon":"<svg viewBox=\\"0 0 24 24\\" xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"24\\" height=\\"24\\" aria-hidden=\\"true\\" focusable=\\"false\\"><path d=\\"M18 4h-7c-1.1 0-2 .9-2 2v3H6c-1.1 0-2 .9-2 2v7c0 1.1.9 2 2 2h7c1.1 0 2-.9 2-2v-3h3c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-4.5 14c0 .3-.2.5-.5.5H6c-.3 0-.5-.2-.5-.5v-7c0-.3.2-.5.5-.5h3V13c0 1.1.9 2 2 2h2.5v3zm0-4.5H11c-.3 0-.5-.2-.5-.5v-2.5H13c.3 0 .5.2.5.5v2.5zm5-.5c0 .3-.2.5-.5.5h-3V11c0-1.1-.9-2-2-2h-2.5V6c0-.3.2-.5.5-.5h7c.3 0 .5.2.5.5v7z\\"></path></svg>","description":"A group block with Tailwind class support","example":{},"supports":{"html":false,"color":false,"background":false,"textColor":false,"spacing":false,"border":false,"align":false,"anchor":true,"customClassName":true},"attributes":{"label":{"type":"string","default":""},"layout":{"type":"object"},"backgroundColor":{"type":"string"},"textColor":{"type":"string"},"style":{"type":"object"},"minHeight":{"type":"string"},"borderWidth":{"type":"string","default":""},"borderColor":{"type":"string","default":""},"borderRadius":{"type":"string","default":""},"borderWidthTop":{"type":"string","default":""},"borderWidthRight":{"type":"string","default":""},"borderWidthBottom":{"type":"string","default":""},"borderWidthLeft":{"type":"string","default":""},"borderColorTop":{"type":"string","default":""},"borderColorRight":{"type":"string","default":""},"borderColorBottom":{"type":"string","default":""},"borderColorLeft":{"type":"string","default":""},"borderStyleTop":{"type":"string","default":""},"borderStyleRight":{"type":"string","default":""},"borderStyleBottom":{"type":"string","default":""},"borderStyleLeft":{"type":"string","default":""},"fontFamily":{"type":"string"},"fontSize":{"type":"string"},"fontAppearance":{"type":"string"},"lineHeight":{"type":"string"},"letterSpacing":{"type":"string"},"textDecoration":{"type":"string"},"letterCase":{"type":"string"},"typographyVisible":{"type":"array","items":{"type":"string"}},"anchor":{"type":"string"},"className":{"type":"string"},"marginTop":{"type":"string","default":""},"marginRight":{"type":"string","default":""},"marginBottom":{"type":"string","default":""},"marginLeft":{"type":"string","default":""},"paddingTop":{"type":"string","default":""},"paddingRight":{"type":"string","default":""},"paddingBottom":{"type":"string","default":""},"paddingLeft":{"type":"string","default":""},"spacingLinked":{"type":"boolean","default":true},"borderRadiusTopLeft":{"type":"string","default":""},"borderRadiusTopRight":{"type":"string","default":""},"borderRadiusBottomRight":{"type":"string","default":""},"borderRadiusBottomLeft":{"type":"string","default":""},"containerType":{"type":"string","default":"block"},"flexJustify":{"type":"string","default":"start"},"flexDirection":{"type":"string","default":"row"},"flexWrap":{"type":"string","default":"nowrap"},"gap":{"type":"string","default":""},"gridMode":{"type":"string","default":"auto"},"gridColumnWidth":{"type":"string","default":""},"gridColumns":{"type":"string","default":"3"},"gridTemplateColumns":{"type":"string","default":""}},"textdomain":"tw-group","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
 
 /***/ })
 
