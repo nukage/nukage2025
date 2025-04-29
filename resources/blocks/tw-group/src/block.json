@@ -39,15 +39,35 @@
         "minHeight": {
             "type": "string"
         },
+        "border": {
+            "type": "object",
+            "default": {
+                "top": "",
+                "right": "",
+                "bottom": "",
+                "left": "",
+                "colorTop": "",
+                "colorRight": "",
+                "colorBottom": "",
+                "colorLeft": "",
+                "linked": true
+            }
+        },
+        "borderRadius": {
+            "type": "object",
+            "default": {
+                "topLeft": "",
+                "topRight": "",
+                "bottomRight": "",
+                "bottomLeft": "",
+                "linked": true
+            }
+        },
         "borderWidth": {
             "type": "string",
             "default": ""
         },
         "borderColor": {
-            "type": "string",
-            "default": ""
-        },
-        "borderRadius": {
             "type": "string",
             "default": ""
         },
@@ -132,41 +152,17 @@
         "className": {
             "type": "string"
         },
-        "marginTop": {
-            "type": "string",
-            "default": ""
+        "margin": {
+            "type": "object",
+            "default": { "top": "", "right": "", "bottom": "", "left": "", "linked": true }
         },
-        "marginRight": {
-            "type": "string",
-            "default": ""
+        "padding": {
+            "type": "object",
+            "default": { "top": "", "right": "", "bottom": "", "left": "", "linked": true }
         },
-        "marginBottom": {
-            "type": "string",
-            "default": ""
-        },
-        "marginLeft": {
-            "type": "string",
-            "default": ""
-        },
-        "paddingTop": {
-            "type": "string",
-            "default": ""
-        },
-        "paddingRight": {
-            "type": "string",
-            "default": ""
-        },
-        "paddingBottom": {
-            "type": "string",
-            "default": ""
-        },
-        "paddingLeft": {
-            "type": "string",
-            "default": ""
-        },
-        "spacingLinked": {
-            "type": "boolean",
-            "default": true
+        "positionOffsets": {
+            "type": "object",
+            "default": { "top": "", "right": "", "bottom": "", "left": "", "linked": true }
         },
         "borderRadiusTopLeft": {
             "type": "string",
@@ -219,6 +215,14 @@
         "gridTemplateColumns": {
             "type": "string",
             "default": ""
+        },
+        "position": {
+            "type": "string",
+            "default": "static"
+        },
+        "panelState": {
+            "type": "object",
+            "default": {}
         }
     },
     "textdomain": "tw-group",

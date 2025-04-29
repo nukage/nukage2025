@@ -39,6 +39,9 @@ import AlignmentPanel from './AlignmentPanel';
 import TypographyPanel from './TypographyPanel';
 import ContainerType from './ContainerType';
 import LayoutPanel from './LayoutPanel';
+import BorderPanel from './BorderPanel';
+import PositioningPanel from './PositioningPanel';
+import SpacingPanel from './SpacingPanel';
 
 // Helper to convert CSS string to object for editor style prop
 function cssStringToObject(cssString) {
@@ -108,20 +111,9 @@ export default function Edit( { attributes, setAttributes, clientId } ) {
                   <TypographyPanel attributes={attributes} setAttributes={setAttributes} />
                 </PanelBody>
                 <ColorPanel attributes={attributes} setAttributes={setAttributes} />
-                <PanelBody title="Border" initialOpen={true}>
-                  <SpacingControlPanel
-                    attributes={attributes}
-                    setAttributes={setAttributes}
-                    attributePrefix="border"
-                    controls={{
-                      top: true,
-                      right: true,
-                      bottom: true,
-                      left: true,
-                      radius: true,
-                    }}
-                  />
-                </PanelBody>
+                <BorderPanel attributes={attributes} setAttributes={setAttributes} />
+                <SpacingPanel attributes={attributes} setAttributes={setAttributes} />
+                <PositioningPanel attributes={attributes} setAttributes={setAttributes} />
             </InspectorControls>
 
             <BlockControls>
