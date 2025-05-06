@@ -22,8 +22,17 @@ I need to finish setting this up later...
 .grid {
 		display: grid;
 }
+.w-\[420px\] {
+		width: 420px;
+}
+.w-\[500px\] {
+		width: 500px;
+}
 .w-full {
 		width: 100%;
+}
+.basis-\[55\%\] {
+		flex-basis: 55%;
 }
 .-rotate-180 {
 		--tw-rotate: -180deg;
@@ -61,6 +70,9 @@ I need to finish setting this up later...
 .items-end {
 		align-items: flex-end;
 }
+.items-center {
+		align-items: center;
+}
 .items-baseline {
 		align-items: baseline;
 }
@@ -85,11 +97,111 @@ I need to finish setting this up later...
 .justify-evenly {
 		justify-content: space-evenly;
 }
+.rounded-lg {
+		border-radius: 0.5rem;
+}
 .border {
 		border-width: 1px;
 }
+.border-b {
+		border-bottom-width: 1px;
+}
+.border-b-0 {
+		border-bottom-width: 0px;
+}
+.border-l-0 {
+		border-left-width: 0px;
+}
+.border-r-0 {
+		border-right-width: 0px;
+}
+.border-t {
+		border-top-width: 1px;
+}
+.border-solid {
+		border-style: solid;
+}
+.border-primary {
+		--tw-border-opacity: 1;
+		border-color: rgb(216 24 83 / var(--tw-border-opacity, 1));
+}
+.bg-\[\#000c31\] {
+		background-color: #000c31;
+}
+.bg-\[\#0b0c1e\] {
+		background-color: #0b0c1e;
+}
+.bg-black {
+		background-color: #000;
+}
+.bg-blue-dark {
+		background-color: #0B0C1E;
+}
+.bg-primary {
+		background-color: #d81853;
+}
 .fill-base {
 		fill: #ffffff;
+}
+.p-20 {
+		padding: 1.25rem;
+}
+.px-50 {
+		padding-left: 3.125rem;
+		padding-right: 3.125rem;
+}
+.py-20 {
+		padding-top: 1.25rem;
+		padding-bottom: 1.25rem;
+}
+.py-30 {
+		padding-top: 1.875rem;
+		padding-bottom: 1.875rem;
+}
+.py-50 {
+		padding-top: 3.125rem;
+		padding-bottom: 3.125rem;
+}
+.py-\[100px\] {
+		padding-top: 100px;
+		padding-bottom: 100px;
+}
+.py-\[50px\] {
+		padding-top: 50px;
+		padding-bottom: 50px;
+}
+.text-center {
+		text-align: center;
+}
+.font-primary {
+		font-family: Rubik, sans-serif;
+}
+.text-16 {
+		font-size: 16px;
+}
+.text-20 {
+		font-size: 20px;
+}
+.text-\[22px\] {
+		font-size: 22px;
+}
+.text-\[42px\] {
+		font-size: 42px;
+}
+.text-\[48px\] {
+		font-size: 48px;
+}
+.font-black {
+		font-weight: 900;
+}
+.font-light {
+		font-weight: 300;
+}
+.font-medium {
+		font-weight: 500;
+}
+.font-regular {
+		font-weight: 400;
 }
 .uppercase {
 		text-transform: uppercase;
@@ -102,6 +214,27 @@ I need to finish setting this up later...
 }
 .normal-case {
 		text-transform: none;
+}
+.tracking-\[2px\] {
+		letter-spacing: 2px;
+}
+.tracking-wider {
+		letter-spacing: 0.05em;
+}
+.tracking-widest {
+		letter-spacing: 0.1em;
+}
+.text-\[\#A0AEC0\] {
+		color: #A0AEC0;
+}
+.text-neutral {
+		color: #e4e4e4;
+}
+.text-primary {
+		color: #d81853;
+}
+.text-white {
+		color: #fff;
 }
 .no-underline {
 		text-decoration-line: none;
@@ -119,8 +252,8 @@ I need to finish setting this up later...
 }
 .slideout-nav {
 		position: fixed;
-		top: 0;
-		right: 0;
+		top: 0rem;
+		right: 0rem;
 		z-index: 10;
 		display: flex;
 		height: 100%;
@@ -128,8 +261,8 @@ I need to finish setting this up later...
 		align-items: center;
 		justify-content: center;
 		background-color: #ffffff;
-		padding-left: clamp(35px, 5vw, 50px);
-		padding-right: clamp(35px, 5vw, 50px);
+		padding-left: 3.125rem;
+		padding-right: 3.125rem;
 		font-family: Rubik, sans-serif;
 		color: #1a1a1a;
 }
@@ -140,8 +273,8 @@ I need to finish setting this up later...
 }
 @media (min-width: 600px) {
 		.slideout-nav {
-				padding-left: clamp(60px, 8vw, 80px);
-				padding-right: clamp(60px, 8vw, 80px);
+				padding-left: 5rem;
+				padding-right: 5rem;
 		}
 }
 @media (min-width: 782px) {
@@ -158,19 +291,19 @@ I need to finish setting this up later...
 	}
 .slideout-nav__toggle {
 		position: fixed;
-		right: 0;
-		top: 0;
+		right: 0rem;
+		top: 0rem;
 		z-index: 11;
 		background-color: #0785fb;
-		padding-top: clamp(35px, 5vw, 50px);
-		padding-bottom: clamp(35px, 5vw, 50px);
+		padding-top: 3.125rem;
+		padding-bottom: 3.125rem;
 		padding-left: 7px;
 		padding-right: 7px;
 }
 @media (min-width: 782px) {
 		.slideout-nav__toggle {
-				padding-top: clamp(60px, 8vw, 80px);
-				padding-bottom: clamp(60px, 8vw, 80px);
+				padding-top: 5rem;
+				padding-bottom: 5rem;
 				padding-left: 12px;
 				padding-right: 12px;
 		}
@@ -208,8 +341,8 @@ I need to finish setting this up later...
 .slideout-nav__menu > li {
 			/* TOP LEVEL MENU ITEMS */
 			position: relative;
-			margin-top: clamp(15px, 2vw, 20px);
-			margin-bottom: clamp(15px, 2vw, 20px);
+			margin-top: 1.25rem;
+			margin-bottom: 1.25rem;
 			padding-left: 15px;
 			padding-right: 15px;
 			padding-bottom: 24px;
@@ -225,8 +358,8 @@ I need to finish setting this up later...
 			} */
 .slideout-nav__menu > li > a img {
 		position: absolute;
-		right: 0;
-		top: 0;
+		right: 0rem;
+		top: 0rem;
 		transition-property: opacity;
 		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 		transition-duration: 200ms;
@@ -283,8 +416,209 @@ I need to finish setting this up later...
 							filter: invert(12%) sepia(75%) saturate(6634%) hue-rotate(327deg)
 								brightness(86%) contrast(105%);
 }
-img {
+/* --------- GLOBALS ----------- */
+.site-footer {
+		border-bottom-width: 0px;
+		border-left-width: 0px;
+		border-right-width: 0px;
+		border-top-width: 1px;
+		border-style: solid;
+		--tw-border-opacity: 1;
+		border-top-color: rgb(216 24 83 / var(--tw-border-opacity, 1));
+		background-color: #000;
+		color: #fff;
+}
+.lead-capture-1 {
+		background-color: #000c31;
+		padding-top: 100px;
+		padding-bottom: 100px;
+		color: #fff;
+}
+@media (min-width: 960px) {
+		.lead-capture-1 {
+				padding-top: 200px;
+				padding-bottom: 200px;
+		}
+}
+.lead-capture-1__col1 {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+}
+.lead-capture-1__headshot img {
 		border-radius: 9999px;
+}
+.lead-capture-1 .wp-block-heading {
+		font-size: 42px;
+		letter-spacing: 0.1em;
+		color: #d81853;
+}
+.lead-capture-1__headline {
+		text-align: center;
+}
+.lead-capture-1__content {
+		text-align: center;
+		font-size: 20px;
+		font-weight: 300;
+		line-height: 1.25;
+		color: #fff;
+}
+@media not all and (min-width: 960px) {
+		.lead-capture-1__cols {
+				flex-direction: column-reverse;
+		}
+}
+.lead-capture-1 input::-moz-placeholder {
+		font-size: 22px;
+		color: #fff;
+}
+.lead-capture-1 input,
+	.lead-capture-1 input::placeholder {
+		font-size: 22px;
+		color: #fff;
+}
+.lead-capture-1 input {
+		background: none;
+	}
+.lead-capture-1 button[type="submit"] {
+		width: 100%;
+		cursor: pointer;
+		border-radius: 0.5rem;
+		background-color: #d81853;
+		padding: 1.25rem;
+		font-size: 16px;
+		font-weight: 500;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: #fff;
+}
+.lead-capture-1 button[type="submit"]:hover {
+		background-color: #fff;
+		color: #000;
+}
+.lead-capture-1 .fluentform {
+		margin-left: auto;
+		margin-right: auto;
+		width: 420px;
+}
+.social-proof-1 {
+		border-bottom-width: 1px;
+		border-top-width: 1px;
+		border-right-width: 0px;
+		border-left-width: 0px;
+		border-style: solid;
+		--tw-border-opacity: 1;
+		border-color: rgb(216 24 83 / var(--tw-border-opacity, 1));
+		background-color: #0b0c1e;
+		padding-top: 1.875rem;
+		padding-bottom: 1.875rem;
+		text-align: center;
+		font-size: 16px;
+		color: #fff;
+}
+.social-proof-1__headline {
+		font-family: Rubik, sans-serif;
+		font-size: 20px;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: #e4e4e4;
+}
+.about-nukage-1 {
+		background-color: #000c31;
+		padding-top: 100px;
+		padding-bottom: 100px;
+		color: #fff;
+}
+@media (min-width: 960px) {
+		.about-nukage-1 {
+				padding-top: 200px;
+				padding-bottom: 200px;
+		}
+}
+.about-nukage-1__headline,
+	.about-nukage-1__subhead {
+		font-family: Rubik, sans-serif;
+		text-transform: uppercase;
+}
+.about-nukage-1__headline {
+		font-family: Rubik, sans-serif;
+		font-size: 48px;
+		letter-spacing: 0.05em;
+}
+.about-nukage-1__subhead {
+		font-weight: 400;
+		letter-spacing: 0.1em;
+		color: #A0AEC0;
+}
+.about-nukage-1 p {
+		font-size: 20px;
+}
+.about-nukage-1__col1 {
+		flex-basis: 55%;
+}
+.about-nukage-1__col2 {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+}
+.about-nukage-1__images figure:nth-child(2) img {
+		-o-object-position: right;
+		   object-position: right;
+}
+.about-nukage-1__images figure:nth-child(4) img {
+		-o-object-position: bottom;
+		   object-position: bottom;
+}
+.support-from-1 {
+		padding-top: 50px;
+		padding-bottom: 50px;
+}
+.lto-1 {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		background-color: #0B0C1E;
+		padding-top: 3.125rem;
+		padding-bottom: 3.125rem;
+		text-align: center;
+		color: #fff;
+}
+@media (min-width: 960px) {
+		.lto-1 {
+				padding-top: 6.25rem;
+				padding-bottom: 6.25rem;
+		}
+}
+.lto-1 h4 {
+		font-family: Rubik, sans-serif;
+		text-transform: uppercase;
+		letter-spacing: 2px;
+		color: #A0AEC0;
+}
+.lto-1 h3 {
+		margin-left: auto;
+		margin-right: auto;
+		width: 500px;
+		font-family: Rubik, sans-serif;
+		font-weight: 900;
+		text-transform: uppercase;
+}
+.lto-1 .wp-block-button__link {
+		border-radius: 0.5rem;
+		padding-left: 3.125rem;
+		padding-right: 3.125rem;
+		padding-top: 1.25rem;
+		padding-bottom: 1.25rem;
+		font-family: Rubik, sans-serif;
+		font-size: 16px;
+		font-weight: 500;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+}
+.hover\:bg-white:hover {
+		background-color: #fff;
 }
 .hover\:fill-tertiary:hover {
 		fill: #0785fb;
@@ -297,6 +631,16 @@ img {
 @media (min-width: 782px) {
 		.md\:grid-cols-2 {
 				grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+}
+@media (min-width: 960px) {
+		.lg\:py-100 {
+				padding-top: 6.25rem;
+				padding-bottom: 6.25rem;
+		}
+		.lg\:py-\[200px\] {
+				padding-top: 200px;
+				padding-bottom: 200px;
 		}
 }
 

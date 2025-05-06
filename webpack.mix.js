@@ -19,8 +19,8 @@ mix.postCss("resources/css/tailwind.css", "css");
 // mix.postCss('resources/blocks/**/*.css', 'resources/blocks/');
 
 
-let fs = require('fs');
-const blockPath = 'resources/blocks' // the path you want to discover
+// let fs = require('fs');
+// const blockPath = 'resources/blocks' // the path you want to discover
 
  
 
@@ -64,7 +64,8 @@ mix.browserSync({
     host: 'nukageredesign.local',
     open: 'external',
     port: 8000,
-    files: ['*.php', './css/app.css'],
+    injectChanges: true,
+ 
 });
 
 if (mix.inProduction()) {

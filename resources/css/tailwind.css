@@ -5,6 +5,103 @@ I need to finish setting this up later...
 @import "tailwindcss/utilities";
 
 @import "blocks/slideout-menu.css";
-img {
-	@apply rounded-full;
+
+/* --------- GLOBALS ----------- */
+
+.site-footer {
+	@apply bg-black text-white border-b-0 border-l-0 border-r-0 border-solid border-t   border-t-primary;
+}
+
+.lead-capture-1 {
+	@apply py-[100px] lg:py-[200px] bg-[#000c31] text-white;
+	&__col1 {
+		@apply flex justify-center flex-col items-center;
+	}
+	&__headshot img {
+		@apply rounded-full;
+	}
+
+	.wp-block-heading {
+		@apply text-primary tracking-widest text-[42px];
+	}
+	&__headline {
+		@apply text-center;
+	}
+	&__content {
+		@apply text-center text-white font-light text-20 leading-small;
+	}
+	&__cols {
+		@apply max-lg:flex-col-reverse;
+	}
+
+	input,
+	input::placeholder {
+		@apply text-[22px] text-white;
+	}
+	input {
+		background: none;
+	}
+	button[type="submit"] {
+		@apply bg-primary text-white text-16 tracking-widest font-medium cursor-pointer uppercase p-20 rounded-lg w-full hover:bg-white hover:text-black;
+	}
+	.fluentform {
+		@apply w-[420px] mx-auto;
+	}
+}
+
+.social-proof-1 {
+	@apply bg-[#0b0c1e] text-white border-b border-t border-r-0 border-l-0 border-primary border-solid text-16 py-30 text-center;
+	&__headline {
+		@apply text-20   font-primary text-neutral uppercase tracking-widest;
+	}
+}
+
+.about-nukage-1 {
+	@apply bg-[#000c31] text-white py-[100px] lg:py-[200px];
+	&__headline,
+	&__subhead {
+		@apply uppercase font-primary;
+	}
+	&__headline {
+		@apply font-primary tracking-wider text-[48px];
+	}
+	&__subhead {
+		@apply text-[#A0AEC0] font-regular tracking-widest;
+	}
+	p {
+		@apply text-20;
+	}
+	&__col1 {
+		@apply basis-[55%];
+	}
+	&__col2 {
+		@apply flex flex-col justify-center;
+	}
+	&__images {
+		figure:nth-child(2) img {
+			@apply object-right;
+		}
+		figure:nth-child(4) img {
+			@apply object-bottom;
+		}
+	}
+}
+
+.support-from-1 {
+	@apply py-[50px];
+}
+
+.lto-1 {
+	@apply bg-blue-dark text-white text-center py-50 lg:py-100 flex flex-col items-center justify-center;
+
+	h4 {
+		@apply uppercase tracking-[2px] font-primary text-[#A0AEC0];
+	}
+	h3 {
+		@apply uppercase font-primary font-black w-[500px] mx-auto;
+	}
+
+	.wp-block-button__link {
+		@apply text-16 uppercase rounded-lg font-primary tracking-widest px-50 py-20 font-medium;
+	}
 }
