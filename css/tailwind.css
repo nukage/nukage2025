@@ -1,6 +1,9 @@
 /* @import "tailwindcss/base";
 I need to finish setting this up later...
 */
+.static {
+		position: static;
+}
 .sticky {
 		position: sticky;
 }
@@ -32,6 +35,9 @@ I need to finish setting this up later...
 }
 .rotate-90 {
 		--tw-rotate: 90deg;
+		transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+.transform {
 		transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 .cursor-pointer {

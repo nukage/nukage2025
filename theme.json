@@ -99,6 +99,19 @@
 			]
 		},
 		"custom": {
+			"border": {
+			  "width": {
+				"thin": "1px",
+				"thick": "3px"
+			  },
+			  "radius": {
+				"none": "0px",
+				"small": "4px",
+				"medium": "8px",
+				"large": "16px",
+				"rounded": "9999px"
+			  }
+			},
 			"fontWeight": {
 				"black": 900,
 				"bold": 700,
@@ -115,7 +128,14 @@
 				"medium": 1.5,
 				"small": 1.25,
 				"x-large": 2,
-				"x-small": 1.1000000000000001
+				"x-small": 1.1000000000000001,
+				"super-smol": 1.01
+			},
+			"letterSpacing": {
+				"blarge": 0.2,
+				"large": 0.125,
+				"medium": 0.0625,
+				"small": 0.03125
 			},
 			"width": {
 				"full": "100%"
@@ -312,9 +332,10 @@
 					"name": "xxLarge",
 					"size": "30px",
 					"slug": "30"
-				}
+				} 
 			]
 		},
+		
 		"useRootPaddingAwareAlignments": true
 	},
 	"styles": {
