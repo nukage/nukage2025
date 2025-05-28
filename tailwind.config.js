@@ -20,7 +20,42 @@ module.exports = {
         './safelist.txt'
     ],
 	safelist: [
-	 
+		'text-2xl',
+		'text-3xl',
+		{
+			pattern: /^p(?:x|y|t|b|l|r)?-[a-z0-9-]+$/i, // Padding
+		  },
+		  {
+			pattern: /^m(?:x|y|t|b|l|r)?-[a-z0-9-]+$/i, // Margin
+		  },
+		{
+			pattern: /^text-[^\/]*$/,
+		},
+		{
+			pattern: /^bg-[^\/]*$/,
+		},
+		{
+			pattern: /^shadow-[^\/]*$/,
+		},
+		{
+			pattern: /^rounded-[^\/]*$/,
+		},
+		{
+			pattern: /^font-[^\/]+$/,
+		},
+		{
+			pattern: /^leading-[^\/]*$/,
+		},
+		{
+			pattern: /^grid-cols-\d+$/i,
+		},
+		{
+			pattern: /^gap-\d+$/i,
+		},
+		{
+			pattern: /^(w|min-w|max-w)-[a-z0-9\/-]+$/i,
+		  },
+		  
 	  ],
     theme: {
         container: {

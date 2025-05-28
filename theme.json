@@ -105,6 +105,11 @@
 					"color": "#0B0C1E",
 					"name": "Dark Blue",
 					"slug": "blue-dark"
+				},
+				{
+					"color": "#000e30",
+					"name": "Dark Blue Saturated",
+					"slug": "blue-dark-sat"
 				}
 			]
 		},
