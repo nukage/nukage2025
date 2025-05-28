@@ -1,5 +1,6 @@
 .slideout-nav {
-	@apply max-xs:w-full px-50 sm:px-80 md:px-[120px] top-0 right-0 fixed bg-base h-full flex flex-col justify-center items-center font-primary  z-10 text-contrast;
+	@apply fixed max-xs:w-full px-50   top-[var(--top-offset)] right-0   bg-blue-dark bg-opacity-95 h-[calc(100%-var(--top-offset))] flex flex-col justify-center items-center font-primary  z-10 text-contrast;
+	--top-offset: 85px;
 
 	&.active {
 		box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.24);
@@ -9,10 +10,12 @@
 	}
 
 	&__toggle {
-		@apply bg-tertiary fixed right-0 top-0 py-50 md:py-80 px-[7px] md:px-[12px]  md:hover:bg-secondary z-[11];
-		/* img {
-			@apply max-md:w-25;
-		} */
+		@apply float-end     right-0 top-0  px-[7px] md:px-[12px]    z-[11] bg-opacity-0 bg-blue-dark border-none cursor-pointer;
+
+		img {
+			filter: brightness(0) saturate(100%) invert(25%) sepia(34%)
+				saturate(5785%) hue-rotate(325deg) brightness(83%) contrast(106%);
+		}
 		&:hover img,
 		&.active img {
 			filter: brightness(0) saturate(100%) invert(100%) sepia(0%)
@@ -22,7 +25,7 @@
 			transform: scaleX(-100%);
 		}
 		&.active {
-			@apply bg-secondary;
+			@apply bg-primary;
 		}
 	}
 
@@ -31,10 +34,13 @@
 	}
 
 	&__menu {
-		@apply w-full md:w-[38rem];
+		@apply w-full md:w-[38rem] list-none;
 		> li {
 			/* TOP LEVEL MENU ITEMS */
-			@apply px-[15px]  text-primary font-semi-bold pb-[24px] my-20 hover:text-secondary  relative text-24;
+			@apply px-[15px]  text-primary font-semi-bold pb-[24px] my-10 hover:text-secondary  relative text-24;
+			a {
+				@apply no-underline   hover:text-secondary;
+			}
 			/* &:not(:last-child) {
 				@apply border-b-[2px] border-primary border-dotted;
 			} */

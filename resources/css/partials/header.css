@@ -1,0 +1,10 @@
+.header {
+	@apply fixed z-1 w-full h-[85px];
+	&--dark {
+		@apply bg-black bg-opacity-50;
+	}
+}
+
+.header-push {
+	@apply h-[85px];
+}

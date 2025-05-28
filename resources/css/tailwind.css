@@ -6,6 +6,9 @@ I need to finish setting this up later...
 
 @import "blocks/slideout-menu.css";
 
+@import "partials/header.css";
+@import "partials/footer.css";
+
 /* --------- GLOBALS ----------- */
 
 .site-footer {
@@ -103,5 +106,11 @@ I need to finish setting this up later...
 
 	.wp-block-button__link {
 		@apply text-16 uppercase rounded-lg font-primary tracking-widest px-50 py-20 font-medium;
+	}
+}
+
+.image-rounded {
+	img {
+		@apply rounded-full;
 	}
 }

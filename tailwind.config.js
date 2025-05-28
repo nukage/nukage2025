@@ -6,7 +6,7 @@ const tailpress = require("@nukage/tailthemer");
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     corePlugins: {
-		backgroundOpacity: false,
+		backgroundOpacity: true,
 		placeholderOpacity: false,
 		textOpacity: false,
 		divideOpacity: false,

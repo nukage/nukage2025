@@ -43,3 +43,4 @@ transition-all
 duration-300
 max-md:grid-cols-1
 md:grid-cols-2
+rounded-full
