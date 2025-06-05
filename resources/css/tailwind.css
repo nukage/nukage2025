@@ -11,10 +11,6 @@ I need to finish setting this up later...
 
 /* --------- GLOBALS ----------- */
 
-.site-footer {
-	@apply bg-black text-white border-b-0 border-l-0 border-r-0 border-solid border-t   border-t-primary;
-}
-
 .lead-capture-1 {
 	@apply py-[100px] lg:py-[200px] bg-[#000c31] text-white;
 	&__col1 {
