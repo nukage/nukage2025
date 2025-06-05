@@ -8,3 +8,14 @@
 .header-push {
 	@apply h-[85px];
 }
+
+header + .wp-block-group.woocommerce {
+	@apply mt-0;
+}
+/* .nkg-main-content {
+	@apply border border-primary border-solid;
+} */
+
+.nkg-page-spacing {
+	@apply pt-[120px] pb-[80px];
+}

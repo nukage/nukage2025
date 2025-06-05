@@ -2924,9 +2924,6 @@ I need to finish setting this up later...
 .border-b {
 	border-bottom-width: 1px;
 }
-.border-b-0 {
-	border-bottom-width: 0px;
-}
 .border-l-0 {
 	border-left-width: 0px;
 }
@@ -5226,6 +5223,16 @@ I need to finish setting this up later...
 .header-push {
 	height: 85px;
 }
+header + .wp-block-group.woocommerce {
+	margin-top: 0rem;
+}
+/* .nkg-main-content {
+	@apply border border-primary border-solid;
+} */
+.nkg-page-spacing {
+	padding-top: 120px;
+	padding-bottom: 80px;
+}
 .site-footer {
 	border-bottom-width: 0px;
 	border-left-width: 0px;
@@ -5249,18 +5256,6 @@ I need to finish setting this up later...
 	color: #fff;
 }
 /* --------- GLOBALS ----------- */
-.site-footer {
-	border-bottom-width: 0px;
-	border-left-width: 0px;
-	border-right-width: 0px;
-	border-top-width: 1px;
-	border-style: solid;
-	--tw-border-opacity: 1;
-	border-top-color: rgb(216 24 83 / var(--tw-border-opacity, 1));
-	--tw-bg-opacity: 1;
-	background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1));
-	color: #fff;
-}
 .lead-capture-1 {
 	--tw-bg-opacity: 1;
 	background-color: rgb(0 12 49 / var(--tw-bg-opacity, 1));
